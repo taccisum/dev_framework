@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.cloudlinkscm</groupId>
+    <artifactId>framework</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>fm-core</module>
+        <module>fm-dao</module>
+        <module>fm-service</module>
+        <module>fm-log</module>
+        <module>fm-util</module>
+        <module>fm-webapp</module>
+    </modules>
+
+    <properties>
+        <jackson.version>2.8.1</jackson.version>
+        <junit.version>4.12</junit.version>
+        <mockito.version>1.10.19</mockito.version>
+        <jfairy.version>0.5.3</jfairy.version>
+        <mybatis-starter.version>1.2.0</mybatis-starter.version>
+        <hikari-cp.version>2.6.1</hikari-cp.version>
+        <mybatis-mapper.version>1.1.0</mybatis-mapper.version>
+        <pagehelper.version>1.1.0</pagehelper.version>
+
+        <fm-core.version>1.0-SNAPSHOT</fm-core.version>
+        <fm-dao.version>1.0-SNAPSHOT</fm-dao.version>
+        <fm-log.version>1.0-SNAPSHOT</fm-log.version>
+        <fm-service.version>1.0-SNAPSHOT</fm-service.version>
+        <fm-util.version>1.0-SNAPSHOT</fm-util.version>
+        <fm-webapp.version>1.0-SNAPSHOT</fm-webapp.version>
+    </properties>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.codearte.jfairy</groupId>
+            <artifactId>jfairy</artifactId>
+            <version>${jfairy.version}</version>
+        </dependency>
+    </dependencies>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>1.5.2.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.zaxxer</groupId>
+                <artifactId>HikariCP</artifactId>
+                <version>${hikari-cp.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper-spring-boot-starter</artifactId>
+                <version>${mybatis-mapper.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.cloudlinkscm</groupId>
+                <artifactId>fm-core</artifactId>
+                <version>${fm-core.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.cloudlinkscm</groupId>
+                <artifactId>fm-dao</artifactId>
+                <version>${fm-dao.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.cloudlinkscm</groupId>
+                <artifactId>fm-log</artifactId>
+                <version>${fm-log.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.cloudlinkscm</groupId>
+                <artifactId>fm-service</artifactId>
+                <version>${fm-service.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.cloudlinkscm</groupId>
+                <artifactId>fm-util</artifactId>
+                <version>${fm-util.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.cloudlinkscm</groupId>
+                <artifactId>fm-webapp</artifactId>
+                <version>${fm-webapp.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <distributionManagement>
+        <repository>
+            <id>nexus-releases</id>
+            <name>nexus releases</name>
+            <url>http://10.0.20.127:8081/nexus/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-snapshots</id>
+            <name>nexus snapshots</name>
+            <url>http://10.0.20.127:8081/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <!--<repository>-->
+            <!--<id>nexus-releases</id>-->
+            <!--<name>nexus releases</name>-->
+            <!--<url>http://localhost:8081/nexus/content/repositories/releases/</url>-->
+        <!--</repository>-->
+        <!--<snapshotRepository>-->
+            <!--<id>nexus-snapshots</id>-->
+            <!--<name>nexus snapshots</name>-->
+            <!--<url>http://localhost:8081/nexus/content/repositories/snapshots/</url>-->
+        <!--</snapshotRepository>-->
+    </distributionManagement>
+
+    <repositories>
+        <!--<repository>-->
+            <!--<id>nexus-hercules</id>-->
+            <!--<name>Nexus public Repository</name>-->
+            <!--<url>http://10.0.20.127:8081/nexus/content/groups/public/</url>-->
+        <!--</repository>-->
+        <repository>
+            <id>nexus-hercules</id>
+            <name>Nexus public Repository</name>
+            <url>http://localhost:8081/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

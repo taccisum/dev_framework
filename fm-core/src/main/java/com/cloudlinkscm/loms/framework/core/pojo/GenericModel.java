@@ -72,18 +72,17 @@ public abstract class GenericModel {
         Date currentDate = new Date();
 
         setId(generateId());
-        setInsertUser(currentUserId());
         setInsertTime(currentDate);
-        setUpdateUser(currentUserId());
-        setUpdateTime(currentDate);
+        setUpdateUser(null);
+        setUpdateTime(null);
 
         setDefault();
     }
 
-    protected abstract String currentUserId();
-    protected abstract void setDefault();
+    protected void setDefault(){
+    }
 
-    private String generateId() {
-        return UUID.randomUUID().toString();
+    protected String generateId() {
+        return UUID.randomUUID().toString().replace("-","");
     }
 }

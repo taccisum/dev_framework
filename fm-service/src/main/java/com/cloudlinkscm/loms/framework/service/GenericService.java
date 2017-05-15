@@ -6,12 +6,16 @@ import com.cloudlinkscm.loms.framework.dao.exception.DeleteException;
 import com.cloudlinkscm.loms.framework.dao.exception.QueryException;
 import com.cloudlinkscm.loms.framework.dao.exception.InsertException;
 import com.cloudlinkscm.loms.framework.dao.exception.UpdateException;
+import org.apache.ibatis.session.RowBounds;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
+import java.util.List;
 
 /**
+ * todo:: impl
  * service基类
  * @author : tac
  * @date : 2017/5/13
@@ -37,10 +41,23 @@ public abstract class GenericService<E extends GenericModel> {
         return result;
     }
 
-    public int insert(E entity){
+    public int delete(E t) {
+        int result = 0;
+        try {
+            result = mapper.delete(t);
+        } catch (Exception e) {
+            DeleteException bizEx = new DeleteException();
+            logger.error(bizEx.getErrorCode().getMsg(), e);
+            throw bizEx;
+        }
+        return result;
+    }
+
+    public int insert(E entity) {
         int result = 0;
         try {
             entity.init();
+            entity.setInsertUser(currentUserId());
             result = mapper.insert(entity);
         } catch (Exception e) {
             InsertException bizEx = new InsertException();
@@ -50,7 +67,7 @@ public abstract class GenericService<E extends GenericModel> {
         return result;
     }
 
-    public int insertSelective(E entity){
+    public int insertSelective(E entity) {
         int result = 0;
         try {
             entity.init();
@@ -63,7 +80,11 @@ public abstract class GenericService<E extends GenericModel> {
         return result;
     }
 
-    public E selectByPrimaryKey(String pk){
+    public List<E> selectAll() {
+        return null;
+    }
+
+    public E selectByPrimaryKey(Object pk) {
         try {
             E result = mapper.selectByPrimaryKey(pk);
             return result;
@@ -75,20 +96,19 @@ public abstract class GenericService<E extends GenericModel> {
         }
     }
 
-    public int updateByPrimaryKeySelective(E entity){
-        int result = 0;
-        try {
-            setUpdateDefault(entity);
-            result = mapper.updateByPrimaryKeySelective(entity);
-        } catch (Exception e) {
-            UpdateException bizEx = new UpdateException();
-            logger.error(bizEx.getErrorCode().getMsg(), e);
-            throw bizEx;
-        }
-        return result;
+    public int selectCount(E t) {
+        return 0;
     }
 
-    public int updateByPrimaryKey(E entity){
+    public List<E> select(E t) {
+        return null;
+    }
+
+    public E selectOne(E t) {
+        return null;
+    }
+
+    public int updateByPrimaryKey(E entity) {
         int result = 0;
         try {
             setUpdateDefault(entity);
@@ -101,8 +121,54 @@ public abstract class GenericService<E extends GenericModel> {
         return result;
     }
 
+    public int updateByPrimaryKeySelective(E entity) {
+        int result = 0;
+        try {
+            setUpdateDefault(entity);
+            result = mapper.updateByPrimaryKeySelective(entity);
+        } catch (Exception e) {
+            UpdateException bizEx = new UpdateException();
+            logger.error(bizEx.getErrorCode().getMsg(), e);
+            throw bizEx;
+        }
+        return result;
+    }
+
+    public int deleteByExample(Object o) {
+        return 0;
+    }
+
+    public List<E> selectByExample(Object o) {
+        return null;
+    }
+
+    public int selectCountByExample(Object o) {
+        return 0;
+    }
+
+    public int updateByExample(E t, Object o) {
+        return 0;
+    }
+
+    public int updateByExampleSelective(E t, Object o) {
+        return 0;
+    }
+
+    public List<E> selectByExampleAndRowBounds(Object o, RowBounds rowBounds) {
+        return null;
+    }
+
+    public List<E> selectByRowBounds(E t, RowBounds rowBounds) {
+        return null;
+    }
+
     private void setUpdateDefault(E entity) {
         //todo:: set update user & tenant
         entity.setUpdateTime(new Date());
+    }
+
+    protected String currentUserId(){
+        //todo::
+        return "";
     }
 }

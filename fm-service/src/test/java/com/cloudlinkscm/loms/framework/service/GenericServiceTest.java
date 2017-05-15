@@ -5,6 +5,7 @@ import com.cloudlinkscm.loms.framework.dao.GenericMapper;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -15,6 +16,7 @@ import static org.mockito.Mockito.when;
  * @date : 2017/5/15
  */
 
+@Transactional
 public class GenericServiceTest {
 
     private GenericMapper mapper;

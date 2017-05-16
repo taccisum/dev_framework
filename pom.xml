@@ -24,6 +24,7 @@
         <jfairy.version>0.5.3</jfairy.version>
         <mybatis-starter.version>1.2.0</mybatis-starter.version>
         <hikari-cp.version>2.6.1</hikari-cp.version>
+        <jpa.version>RELEASE</jpa.version>
         <mybatis-mapper.version>1.1.0</mybatis-mapper.version>
         <pagehelper.version>1.1.0</pagehelper.version>
 
@@ -81,6 +82,11 @@
                 <groupId>com.zaxxer</groupId>
                 <artifactId>HikariCP</artifactId>
                 <version>${hikari-cp.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.persistence</groupId>
+                <artifactId>persistence-api</artifactId>
+                <version>${jpa.version}</version>
             </dependency>
             <dependency>
                 <groupId>tk.mybatis</groupId>

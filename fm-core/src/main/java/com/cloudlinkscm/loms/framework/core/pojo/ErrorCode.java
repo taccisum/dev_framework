@@ -5,5 +5,5 @@ package com.cloudlinkscm.loms.framework.core.pojo;
  * @author : tac
  * @date : 2017/5/12
  */
-public interface ErrorCode extends Code {
+public interface ErrorCode extends AppCode {
 }

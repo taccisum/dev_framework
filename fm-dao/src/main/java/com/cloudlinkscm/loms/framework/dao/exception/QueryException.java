@@ -9,6 +9,6 @@ import com.cloudlinkscm.loms.framework.dao.DaoErrorCode;
  */
 public class QueryException extends BizException {
     public QueryException() {
-        super(DaoErrorCode.GET_EXCEPTION);
+        super(DaoErrorCode.SELECT_EXCEPTION);
     }
 }

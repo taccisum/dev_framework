@@ -20,7 +20,14 @@
         <dependency>
             <groupId>javax.persistence</groupId>
             <artifactId>persistence-api</artifactId>
-            <version>RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cloudlinkscm</groupId>
+            <artifactId>fm-util</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.cloudlinkscm</groupId>
+            <artifactId>fm-log</artifactId>
         </dependency>
     </dependencies>
 </project>

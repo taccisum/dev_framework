@@ -15,18 +15,10 @@ import java.util.UUID;
 public abstract class GenericModel {
     @Id
     private String id;
-
-    @JsonIgnore
     private String insertUser;
-    @JsonIgnore
     private Date insertTime;
-    @JsonIgnore
     private String updateUser;
-    @JsonIgnore
     private Date updateTime;
-//    @JsonIgnore
-//    private String tenantId;
-
 
     public String getId() {
         return id;
@@ -73,6 +65,7 @@ public abstract class GenericModel {
 
         setId(generateId());
         setInsertTime(currentDate);
+//        setInsertUser("");
         setUpdateUser(null);
         setUpdateTime(null);
 

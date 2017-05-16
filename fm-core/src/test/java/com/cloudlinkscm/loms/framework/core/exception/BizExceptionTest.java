@@ -1,6 +1,7 @@
 package com.cloudlinkscm.loms.framework.core.exception;
 
 import com.cloudlinkscm.loms.framework.core.pojo.ErrorCode;
+import com.cloudlinkscm.loms.framework.core.pojo.Language;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -23,7 +24,7 @@ public class BizExceptionTest {
         }
         catch (BizException bizEx){
             Assert.assertEquals("123", bizEx.getErrorCode().getCode());
-            Assert.assertEquals("测试异常", bizEx.getErrorCode().getMsg());
+            Assert.assertEquals("测试异常", bizEx.getErrorCode().getMessage());
         }
     }
 
@@ -39,10 +40,16 @@ public class BizExceptionTest {
     class TestCode implements  ErrorCode{
         private final static String CODE = "123";
         private final static String MSG = "测试异常";
+        private final static String ENG_MSG = "exception";
 
         @Override
-        public String getMsg() {
+        public String getMessage() {
             return MSG;
+        }
+
+        @Override
+        public String getInternationalMessage(Language language) {
+            return ENG_MSG;
         }
 
         @Override

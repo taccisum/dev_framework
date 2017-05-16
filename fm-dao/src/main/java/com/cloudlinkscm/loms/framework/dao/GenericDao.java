@@ -3,6 +3,7 @@ package com.cloudlinkscm.loms.framework.dao;
 
 
 import com.cloudlinkscm.loms.framework.core.exception.BizException;
+import com.cloudlinkscm.loms.framework.core.pojo.GenericBizModel;
 import com.cloudlinkscm.loms.framework.core.pojo.GenericModel;
 import com.cloudlinkscm.loms.framework.core.pojo.Language;
 import com.cloudlinkscm.loms.framework.dao.exception.DeleteException;
@@ -155,6 +156,9 @@ public abstract class GenericDao<E extends GenericModel, PK> {
     public int updateByPrimaryKeySelective(E entity) {
         int result = 0;
         try {
+            if (entity.getId() == null) {
+                throw new IllegalArgumentException("id不能为空");
+            }
             setUpdateDefault(entity);
             result = mapper.updateByPrimaryKeySelective(entity);
         } catch (Exception e) {
@@ -249,17 +253,35 @@ public abstract class GenericDao<E extends GenericModel, PK> {
 
 
     protected String currentUserId(){
-        BizDataInterface data = SpringUtils.getBean(BizDataInterface.class);
+        BizDataInterface data = getBizDataInterface();
         if (data != null) {
             return data.currentUserId();
         }
-        logger.warn("can't find at least one available bean of BizDataInterface");
         return "";
+    }
+    protected String currentUserTenantId(){
+        BizDataInterface data = getBizDataInterface();
+        if (data != null) {
+            return data.currentUserTenantId();
+        }
+        return "";
+    }
+
+    private BizDataInterface getBizDataInterface(){
+        BizDataInterface data = SpringUtils.getBean(BizDataInterface.class);
+        if (data == null) {
+            logger.warn("can't find available bean of BizDataInterface");
+        }
+        return data;
     }
 
     private void setInsertDefault(E entity) {
         entity.init();
         entity.setInsertUser(currentUserId());
+
+        if(entity instanceof GenericBizModel){
+            ((GenericBizModel)entity).setTenantId(currentUserTenantId());
+        }
     }
 
     private void setUpdateDefault(E entity) {

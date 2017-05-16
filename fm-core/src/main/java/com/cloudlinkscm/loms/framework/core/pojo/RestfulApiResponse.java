@@ -113,7 +113,7 @@ public class RestfulApiResponse<T> {
         return new RestfulApiResponse<>(FAILURE_STATE, code, message, stackTrace);
     }
 
-    public static <T> RestfulApiResponse<T> error(String code, String message, String stackTrace){
-        return new RestfulApiResponse<>(ERROR_STATE, code, message, stackTrace);
+    public static <T> RestfulApiResponse<T> error(String message, String stackTrace){
+        return new RestfulApiResponse<>(ERROR_STATE, "-1", message, stackTrace);
     }
 }

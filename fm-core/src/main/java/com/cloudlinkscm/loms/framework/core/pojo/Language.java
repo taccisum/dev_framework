@@ -6,11 +6,11 @@ package com.cloudlinkscm.loms.framework.core.pojo;
  */
 public enum Language {
     /**
-     * 中文
+     * chinese
      */
     ZH,
     /**
-     * 英文
+     * english
      */
     EN,
 

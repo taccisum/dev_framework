@@ -24,7 +24,7 @@ public class RestfulApiResponseTest {
 
     @Test
     public void testError() {
-        RestfulApiResponse errorResponse = RestfulApiResponse.error("123", "", "");
+        RestfulApiResponse errorResponse = RestfulApiResponse.error("", "");
         Assert.assertEquals(-1, errorResponse.getState().intValue());
     }
 

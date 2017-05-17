@@ -19,6 +19,22 @@
         </dependency>
 
         <dependency>
+            <groupId>com.monitorjbl</groupId>
+            <artifactId>spring-json-view</artifactId>
+            <version>0.14</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
             <groupId>com.cloudlinkscm</groupId>
             <artifactId>fm-service</artifactId>
         </dependency>
@@ -29,6 +45,12 @@
         <dependency>
             <groupId>com.cloudlinkscm</groupId>
             <artifactId>fm-util</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

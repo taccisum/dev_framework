@@ -1,0 +1,46 @@
+server:
+  port: 10001
+
+spring:
+  profiles:
+    active: test
+  datasource:
+      type: com.zaxxer.hikari.HikariDataSource
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://10.0.20.127:3306/fm_test
+      username: root
+      password: root
+      hikari:
+        connection-test-query: SELECT 1 FROM DUAL
+        minimum-idle: 3
+        maximum-pool-size: 24
+#        pool-name: ${spring.application.name}-CP
+        pool-name: fm-webapp-CP
+        idle-timeout: 10000
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        leakDetectionThreshold: 2000
+
+mybatis:
+    configuration:
+        map-underscore-to-camel-case: true
+        default-fetch-size: 100
+        default-statement-timeout: 30
+    mapperLocations: classpath:mapper/*.xml
+pagehelper:
+    auto-runtime-dialect: true
+    reasonable: true
+    support-methods-arguments: true
+    params: count=countSql
+
+logging:
+#  file: ${spring.application.name}
+  file: fm-webapp
+  level:
+    ROOT: info
+    org.springframework: info
+    org.springframework.web.servlet.view: info
+    org.springframework.web.servlet.mvc: info
+    com.cloudlinkscm: debug
+    com.zaxxer.hikari: TRACE

@@ -21,7 +21,7 @@ import java.io.StringWriter;
  * @date : 2017/5/16
  */
 public class ExceptionHandler implements HandlerExceptionResolver {
-    private boolean _debug = false;
+    private boolean _debug = false;     //todo:: 后续考虑放在配置文件中控制
     private final Logger LOG = LoggerFactory.getLogger(this.getClass());
 
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {

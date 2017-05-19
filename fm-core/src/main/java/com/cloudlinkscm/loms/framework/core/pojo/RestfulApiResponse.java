@@ -6,6 +6,7 @@ package com.cloudlinkscm.loms.framework.core.pojo;
  * @date : 2017/5/13
  */
 public class RestfulApiResponse<T> {
+    private static final String SUCCESS_CODE = "1";
     private static final int SUCCESS_STATE = 1;
     private static final int FAILURE_STATE = 0;
     private static final int ERROR_STATE = -1;
@@ -93,20 +94,24 @@ public class RestfulApiResponse<T> {
         this.stackTrace = stackTrace;
     }
 
-    public static <T> RestfulApiResponse<T> success(String code, String message, T data){
-        return new RestfulApiResponse<>(SUCCESS_STATE, code, message, data);
+    public static <T> RestfulApiResponse<T> success(String message, T data){
+        return new RestfulApiResponse<>(SUCCESS_STATE, SUCCESS_CODE, message, data);
     }
 
-    public static <T> RestfulApiResponse<T> success(String code, T data){
-        return new RestfulApiResponse<>(SUCCESS_STATE, code, "操作成功", data);
+    public static <T> RestfulApiResponse<T> success(T data){
+        return new RestfulApiResponse<>(SUCCESS_STATE, SUCCESS_CODE, "操作成功", data);
     }
 
-    public static <T> RestfulApiResponse<T> success(String code, String message){
-        return new RestfulApiResponse<>(SUCCESS_STATE, code, message);
+    public static <T> RestfulApiResponse<T> success(String message){
+        return new RestfulApiResponse<>(SUCCESS_STATE, SUCCESS_CODE, message);
     }
 
-    public static <T> RestfulApiResponse<T> success(String code){
-        return new RestfulApiResponse<>(SUCCESS_STATE, code, "操作成功");
+    public static <T> RestfulApiResponse<T> success(){
+        return new RestfulApiResponse<>(SUCCESS_STATE, SUCCESS_CODE, "操作成功");
+    }
+
+    public static <T> RestfulApiResponse<T> failure(String code, String message){
+        return new RestfulApiResponse<>(FAILURE_STATE, code, message, "");
     }
 
     public static <T> RestfulApiResponse<T> failure(String code, String message, String stackTrace){

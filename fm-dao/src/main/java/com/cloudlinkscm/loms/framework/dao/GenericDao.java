@@ -1,7 +1,5 @@
 package com.cloudlinkscm.loms.framework.dao;
 
-
-
 import com.cloudlinkscm.loms.framework.core.exception.BizException;
 import com.cloudlinkscm.loms.framework.core.pojo.GenericBizModel;
 import com.cloudlinkscm.loms.framework.core.pojo.GenericModel;
@@ -20,7 +18,6 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * todo:: impl & test
  * @author : tac
  * @date : 2017/5/16
  */

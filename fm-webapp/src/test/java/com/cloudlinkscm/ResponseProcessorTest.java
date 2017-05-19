@@ -81,7 +81,7 @@ public class ResponseProcessorTest extends BaseTest {
         @Override
         public Demo doAdapt(RestfulApiResponse response) {
             Demo demo = new Demo();
-            demo.setResultCode(response.getCode().toString());
+            demo.setResultCode(response.getCode());
             demo.setResultMsg(response.getMessage());
             demo.setResultValue(response.getData());
             return demo;

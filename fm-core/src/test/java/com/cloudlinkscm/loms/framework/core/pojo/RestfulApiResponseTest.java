@@ -11,9 +11,9 @@ public class RestfulApiResponseTest {
 
     @Test
     public void testSuccess() {
-        RestfulApiResponse successResponse = RestfulApiResponse.success("123");
+        RestfulApiResponse successResponse = RestfulApiResponse.success();
         Assert.assertEquals(1, successResponse.getState().intValue());
-        Assert.assertEquals("123", successResponse.getCode());
+        Assert.assertEquals("1", successResponse.getCode());
     }
 
     @Test

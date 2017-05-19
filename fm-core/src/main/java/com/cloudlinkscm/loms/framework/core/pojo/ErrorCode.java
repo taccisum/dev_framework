@@ -6,4 +6,5 @@ package com.cloudlinkscm.loms.framework.core.pojo;
  * @date : 2017/5/12
  */
 public interface ErrorCode extends AppCode {
+    String getInternationalMessage(Language language, Object... args);
 }

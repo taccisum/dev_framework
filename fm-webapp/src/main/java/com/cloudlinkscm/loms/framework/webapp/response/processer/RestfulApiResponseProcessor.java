@@ -32,14 +32,14 @@ public class RestfulApiResponseProcessor extends JsonViewReturnValueHandler {
 
     @Override
     public void handleReturnValue(Object o, MethodParameter methodParameter, ModelAndViewContainer modelAndViewContainer, NativeWebRequest nativeWebRequest) throws Exception {
-        Integer srcType = 0;
+        Integer adapterType = 0;
         try {
-            srcType = Integer.parseInt(nativeWebRequest.getParameter("adaptTo"));
+            adapterType = Integer.parseInt(nativeWebRequest.getParameter("adaptTo"));
         }catch (NumberFormatException ignored){}
 
         Object o1 = null;
         try {
-            o1 = ResponseAdapterFactory.create(srcType).doAdapt((RestfulApiResponse) o);
+            o1 = ResponseAdapterFactory.create(adapterType).doAdapt((RestfulApiResponse) o);
         }catch (Exception e){
             logger.error("it's a error occurred in doAdapt()", e);
         }

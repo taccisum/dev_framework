@@ -16,7 +16,6 @@ public class BizExceptionTest {
         throw new BizException(new TestCode());
     }
 
-
     @Test
     public void testSubException() {
         try {
@@ -28,10 +27,7 @@ public class BizExceptionTest {
         }
     }
 
-
     private class SomeException extends BizException{
-
-
         SomeException() {
             super(new TestCode());
         }
@@ -55,6 +51,11 @@ public class BizExceptionTest {
         @Override
         public String getCode() {
             return CODE;
+        }
+
+        @Override
+        public String getInternationalMessage(Language language, Object... args) {
+            return String.format(ENG_MSG, args);
         }
     }
 

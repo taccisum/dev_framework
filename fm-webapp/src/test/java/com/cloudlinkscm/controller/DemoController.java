@@ -7,6 +7,8 @@ import com.cloudlinkscm.loms.framework.core.pojo.RestfulApiResponse;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
+
 /**
  * @author : tac
  * @date : 2017/5/17
@@ -18,7 +20,7 @@ public class DemoController {
 
     @RequestMapping("/index")
     public RestfulApiResponse index(){
-        return RestfulApiResponse.success("233", "操作成功", "hello world");
+        return RestfulApiResponse.success("操作成功", "hello world");
     }
 
     @RequestMapping("/sys_exception")
@@ -29,6 +31,11 @@ public class DemoController {
     @RequestMapping("/biz_exception")
     public RestfulApiResponse bizException(){
         throw new BizException(new ErrorCode() {
+            @Override
+            public String getInternationalMessage(Language language, Object... args) {
+                return "it's a business exception";
+            }
+
             @Override
             public String getMessage() {
                 return "这是一个业务异常";
@@ -46,4 +53,8 @@ public class DemoController {
         });
     }
 
+    @RequestMapping("/date_formatter")
+    public RestfulApiResponse<Date> dateFormatter(){
+        return RestfulApiResponse.success("操作成功", new Date());
+    }
 }

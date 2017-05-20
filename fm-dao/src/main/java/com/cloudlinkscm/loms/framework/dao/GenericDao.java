@@ -277,7 +277,10 @@ public abstract class GenericDao<E extends GenericModel, PK> {
         entity.setInsertUser(currentUserId());
 
         if(entity instanceof GenericBizModel){
-            ((GenericBizModel)entity).setTenantId(currentUserTenantId());
+            GenericBizModel temp = (GenericBizModel)entity;
+            if(temp.getTenantId() == null){
+                temp.setTenantId(currentUserTenantId());
+            }
         }
     }
 

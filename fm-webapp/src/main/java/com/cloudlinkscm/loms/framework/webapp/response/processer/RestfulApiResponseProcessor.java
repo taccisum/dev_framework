@@ -42,6 +42,8 @@ public class RestfulApiResponseProcessor extends JsonViewReturnValueHandler {
             o1 = ResponseAdapterFactory.create(adapterType).doAdapt((RestfulApiResponse) o);
         }catch (Exception e){
             logger.error("it's a error occurred in doAdapt()", e);
+            super.handleReturnValue(o, methodParameter, modelAndViewContainer, nativeWebRequest);
+            return;
         }
 
         super.handleReturnValue(o1, methodParameter, modelAndViewContainer, nativeWebRequest);

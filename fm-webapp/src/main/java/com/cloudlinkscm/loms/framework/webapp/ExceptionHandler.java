@@ -1,6 +1,7 @@
 package com.cloudlinkscm.loms.framework.webapp;
 
 import com.cloudlinkscm.loms.framework.core.exception.BizException;
+import com.cloudlinkscm.loms.framework.core.exception.BizExceptionWithArguments;
 import com.cloudlinkscm.loms.framework.core.pojo.Language;
 import com.cloudlinkscm.loms.framework.core.pojo.RestfulApiResponse;
 import com.cloudlinkscm.loms.framework.util.WebUtils;
@@ -27,8 +28,13 @@ public class ExceptionHandler implements HandlerExceptionResolver {
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
         RestfulApiResponse result;
         if (ex instanceof BizException) {
-            BizException bizEx = (BizException) ex;
-            result = handlerBizException(bizEx);
+            if(ex instanceof BizExceptionWithArguments){
+                BizExceptionWithArguments bizEx = (BizExceptionWithArguments) ex;
+                result = handlerBizExceptionWithArguments(bizEx);
+            }else {
+                BizException bizEx = (BizException) ex;
+                result = handlerBizException(bizEx);
+            }
         } else {
             result = handlerSysException(ex);
         }
@@ -54,6 +60,15 @@ public class ExceptionHandler implements HandlerExceptionResolver {
                 bizEx.getErrorCode().getCode(),
                 //todo:: 根据请求参数中带的语言类型返回国际化的错误信息
                 bizEx.getErrorCode().getInternationalMessage(Language.ZH),
+                stackTrace);
+    }
+
+    private RestfulApiResponse handlerBizExceptionWithArguments(BizExceptionWithArguments bizEx) {
+        String stackTrace = _debug ? getStackTrace(bizEx) : "";
+        return RestfulApiResponse.failure(
+                bizEx.getErrorCode().getCode(),
+                //todo:: 根据请求参数中带的语言类型返回国际化的错误信息
+                bizEx.getErrorCode().getInternationalMessage(Language.ZH, bizEx.getArgs().toArray()),
                 stackTrace);
     }
 

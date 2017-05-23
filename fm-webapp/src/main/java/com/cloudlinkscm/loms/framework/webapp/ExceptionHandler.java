@@ -4,6 +4,9 @@ import com.cloudlinkscm.loms.framework.core.exception.BizException;
 import com.cloudlinkscm.loms.framework.core.exception.BizExceptionWithArguments;
 import com.cloudlinkscm.loms.framework.core.pojo.Language;
 import com.cloudlinkscm.loms.framework.core.pojo.RestfulApiResponse;
+import com.cloudlinkscm.loms.framework.dao.BizDataInterface;
+import com.cloudlinkscm.loms.framework.dao.DummyBizDataInterface;
+import com.cloudlinkscm.loms.framework.util.SpringUtils;
 import com.cloudlinkscm.loms.framework.util.WebUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,8 +61,7 @@ public class ExceptionHandler implements HandlerExceptionResolver {
         String stackTrace = _debug ? getStackTrace(bizEx) : "";
         return RestfulApiResponse.failure(
                 bizEx.getErrorCode().getCode(),
-                //todo:: 根据请求参数中带的语言类型返回国际化的错误信息
-                bizEx.getErrorCode().getInternationalMessage(Language.ZH),
+                bizEx.getErrorCode().getInternationalMessage(getBizDataInterface().currentUserLanguage()),
                 stackTrace);
     }
 
@@ -67,8 +69,7 @@ public class ExceptionHandler implements HandlerExceptionResolver {
         String stackTrace = _debug ? getStackTrace(bizEx) : "";
         return RestfulApiResponse.failure(
                 bizEx.getErrorCode().getCode(),
-                //todo:: 根据请求参数中带的语言类型返回国际化的错误信息
-                bizEx.getErrorCode().getInternationalMessage(Language.ZH, bizEx.getArgs().toArray()),
+                bizEx.getErrorCode().getInternationalMessage(getBizDataInterface().currentUserLanguage(), bizEx.getArgs().toArray()),
                 stackTrace);
     }
 
@@ -79,5 +80,15 @@ public class ExceptionHandler implements HandlerExceptionResolver {
         pw.flush();
         sw.flush();
         return sw.toString();
+    }
+
+    //todo:: 此处代码与generic dao中的代码有重复，后续考虑如何抽象为utils
+    private BizDataInterface getBizDataInterface(){
+        BizDataInterface data = SpringUtils.getBean(BizDataInterface.class);
+        if (data == null) {
+            LOG.warn("can't find available bean of BizDataInterface");
+            return DummyBizDataInterface.instance();
+        }
+        return data;
     }
 }

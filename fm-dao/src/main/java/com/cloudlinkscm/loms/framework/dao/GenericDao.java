@@ -250,24 +250,17 @@ public abstract class GenericDao<E extends GenericModel, PK> {
 
 
     protected String currentUserId(){
-        BizDataInterface data = getBizDataInterface();
-        if (data != null) {
-            return data.currentUserId();
-        }
-        return "";
+        return getBizDataInterface().currentUserId();
     }
     protected String currentUserTenantId(){
-        BizDataInterface data = getBizDataInterface();
-        if (data != null) {
-            return data.currentUserTenantId();
-        }
-        return "";
+        return getBizDataInterface().currentUserTenantId();
     }
 
     private BizDataInterface getBizDataInterface(){
         BizDataInterface data = SpringUtils.getBean(BizDataInterface.class);
         if (data == null) {
             logger.warn("can't find available bean of BizDataInterface");
+            return DummyBizDataInterface.instance();
         }
         return data;
     }

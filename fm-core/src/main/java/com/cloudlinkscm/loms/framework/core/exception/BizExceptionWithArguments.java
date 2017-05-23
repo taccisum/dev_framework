@@ -18,10 +18,6 @@ public class BizExceptionWithArguments extends BizException {
         return args;
     }
 
-    public void setArgs(List<String> args) {
-        this.args = args;
-    }
-
     public BizExceptionWithArguments(ErrorCode errorCode, String... args) {
         super(errorCode);
         this.args = Arrays.asList(args);

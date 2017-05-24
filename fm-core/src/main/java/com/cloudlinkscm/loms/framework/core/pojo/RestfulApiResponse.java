@@ -16,74 +16,74 @@ public class RestfulApiResponse<T> {
      * 0：失败（业务异常）
      * -1：错误（系统异常）
      */
-    private Integer state;
+    private Integer returnCode;
     /**
      * 错误码
      */
-    private String code;
+    private String errorCode;
     /**
      * 提示信息
      */
-    private String message;
+    private String returnMsg;
     /**
      * 返回数据
      */
-    private T data;
+    private T result;
     /**
      * 堆栈追踪信息（请仅在debug模式下返回此值，否则应为空字符串）
      */
     private String stackTrace;
 
-    public RestfulApiResponse(Integer state, String code, String message) {
-        this.state = state;
-        this.code = code;
-        this.message = message;
+    public RestfulApiResponse(Integer returnCode, String errorCode, String returnMsg) {
+        this.returnCode = returnCode;
+        this.errorCode = errorCode;
+        this.returnMsg = returnMsg;
     }
 
-    public RestfulApiResponse(Integer state, String code, String message, T data) {
-        this.state = state;
-        this.code = code;
-        this.message = message;
-        this.data = data;
+    public RestfulApiResponse(Integer returnCode, String errorCode, String returnMsg, T result) {
+        this.returnCode = returnCode;
+        this.errorCode = errorCode;
+        this.returnMsg = returnMsg;
+        this.result = result;
     }
 
-    public RestfulApiResponse(Integer state, String code, String message, String stackTrace) {
-        this.state = state;
-        this.code = code;
-        this.message = message;
+    public RestfulApiResponse(Integer returnCode, String errorCode, String returnMsg, String stackTrace) {
+        this.returnCode = returnCode;
+        this.errorCode = errorCode;
+        this.returnMsg = returnMsg;
         this.stackTrace = stackTrace;
     }
 
-    public Integer getState() {
-        return state;
+    public Integer getReturnCode() {
+        return returnCode;
     }
 
-    public void setState(Integer state) {
-        this.state = state;
+    public void setReturnCode(Integer returnCode) {
+        this.returnCode = returnCode;
     }
 
-    public String getCode() {
-        return code;
+    public String getErrorCode() {
+        return errorCode;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
     }
 
-    public String getMessage() {
-        return message;
+    public String getReturnMsg() {
+        return returnMsg;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setReturnMsg(String returnMsg) {
+        this.returnMsg = returnMsg;
     }
 
-    public T getData() {
-        return data;
+    public T getResult() {
+        return result;
     }
 
-    public void setData(T data) {
-        this.data = data;
+    public void setResult(T result) {
+        this.result = result;
     }
 
     public String getStackTrace() {

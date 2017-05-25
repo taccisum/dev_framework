@@ -61,7 +61,7 @@ public class ExceptionHandler implements HandlerExceptionResolver {
         String stackTrace = _debug ? getStackTrace(bizEx) : "";
         return RestfulApiResponse.failure(
                 bizEx.getErrorCode().getCode(),
-                bizEx.getErrorCode().getInternationalMessage(getBizDataInterface().currentUserLanguage()),
+                bizEx.getErrorCode().getInternationalMessage(BizDataInterface.getBean().currentUserLanguage()),
                 stackTrace);
     }
 
@@ -69,7 +69,7 @@ public class ExceptionHandler implements HandlerExceptionResolver {
         String stackTrace = _debug ? getStackTrace(bizEx) : "";
         return RestfulApiResponse.failure(
                 bizEx.getErrorCode().getCode(),
-                bizEx.getErrorCode().getInternationalMessage(getBizDataInterface().currentUserLanguage(), bizEx.getArgs().toArray()),
+                bizEx.getErrorCode().getInternationalMessage(BizDataInterface.getBean().currentUserLanguage(), bizEx.getArgs().toArray()),
                 stackTrace);
     }
 
@@ -80,15 +80,5 @@ public class ExceptionHandler implements HandlerExceptionResolver {
         pw.flush();
         sw.flush();
         return sw.toString();
-    }
-
-    //todo:: 此处代码与generic dao中的代码有重复，后续考虑如何抽象为utils
-    private BizDataInterface getBizDataInterface(){
-        BizDataInterface data = SpringUtils.getBean(BizDataInterface.class);
-        if (data == null) {
-            LOG.warn("can't find available bean of BizDataInterface");
-            return DummyBizDataInterface.instance();
-        }
-        return data;
     }
 }

@@ -7,7 +7,7 @@ package com.cloudlinkscm.loms.framework.util;
  * @date : 2017/5/24
  */
 public class BeanUtils {
-    private static void copyProperties(Object source, Object target){
+    public static void copyProperties(Object source, Object target){
         org.springframework.beans.BeanUtils.copyProperties(source, target);
     }
 }

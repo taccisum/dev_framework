@@ -1,0 +1,42 @@
+package com.cloudlinkscm.loms.framework.core.pojo;
+
+/**
+ * @author : tac
+ * @date : 2017/5/26
+ */
+public class PaginationRequest {
+    private static final int DEF_PAGE_INDEX = 1;
+    private static final int DEF_PAGE_SIZE = 1;
+    private Integer pageIndex;
+    private Integer pageSize;
+
+    public Integer getPageIndex() {
+        if(pageIndex == null){
+            return DEF_PAGE_INDEX;
+        }
+        return pageIndex;
+    }
+
+    public void setPageIndex(Integer pageIndex) {
+        this.pageIndex = pageIndex;
+    }
+
+    public Integer getPageSize() {
+        if(pageSize == null){
+            return DEF_PAGE_SIZE;
+        }
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public Integer getOffset() {
+        return (getPageIndex() - 1) * getPageSize();
+    }
+
+    public Integer getLimit() {
+        return getPageIndex() * getPageSize();
+    }
+}

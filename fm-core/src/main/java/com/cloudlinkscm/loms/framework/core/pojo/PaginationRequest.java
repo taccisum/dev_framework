@@ -1,5 +1,7 @@
 package com.cloudlinkscm.loms.framework.core.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * @author : tac
  * @date : 2017/5/26
@@ -32,10 +34,12 @@ public class PaginationRequest {
         this.pageSize = pageSize;
     }
 
+    @JsonIgnore
     public Integer getOffset() {
         return (getPageIndex() - 1) * getPageSize();
     }
 
+    @JsonIgnore
     public Integer getLimit() {
         return getPageIndex() * getPageSize();
     }

@@ -8,12 +8,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 public class PaginationRequest {
     private static final int DEF_PAGE_INDEX = 1;
-    private static final int DEF_PAGE_SIZE = 1;
+    private static final int DEF_PAGE_SIZE = 20;
     private Integer pageIndex;
     private Integer pageSize;
 
     public Integer getPageIndex() {
-        if(pageIndex == null){
+        if(pageIndex == null || pageIndex <= 0){
             return DEF_PAGE_INDEX;
         }
         return pageIndex;
@@ -24,7 +24,7 @@ public class PaginationRequest {
     }
 
     public Integer getPageSize() {
-        if(pageSize == null){
+        if(pageSize == null || pageSize <= 0){
             return DEF_PAGE_SIZE;
         }
         return pageSize;

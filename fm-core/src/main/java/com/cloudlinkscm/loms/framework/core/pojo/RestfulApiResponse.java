@@ -34,6 +34,9 @@ public class RestfulApiResponse<T> {
      */
     private String stackTrace;
 
+    public RestfulApiResponse(){
+    }
+
     public RestfulApiResponse(Integer returnCode, String errorCode, String returnMsg) {
         this.returnCode = returnCode;
         this.errorCode = errorCode;

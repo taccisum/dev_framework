@@ -7,7 +7,6 @@ import org.junit.Test;
 import java.io.IOException;
 
 /**
- * todo::
  * @author : tac
  * @date : 2017/5/26
  */
@@ -39,7 +38,7 @@ public class PaginationRequestTest {
     }
 
     @Test
-    public void testGetPageIndex() {
+    public void testGetPageIndexAndGetPageSize() {
         PaginationRequest request = new PaginationRequest();
         request.setOffset(12);
         request.setLimit(3);
@@ -60,5 +59,4 @@ public class PaginationRequestTest {
         Assert.assertEquals(12, deserialize.getItemFrom().intValue());
         Assert.assertEquals(15, deserialize.getItemTo().intValue());
     }
-
 }

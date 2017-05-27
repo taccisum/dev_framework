@@ -15,6 +15,7 @@
         <module>fm-log</module>
         <module>fm-util</module>
         <module>fm-webapp</module>
+        <module>fm-test</module>
     </modules>
 
     <properties>
@@ -32,6 +33,7 @@
         <fm-dao.version>1.0-SNAPSHOT</fm-dao.version>
         <fm-log.version>1.0-SNAPSHOT</fm-log.version>
         <fm-service.version>1.0-SNAPSHOT</fm-service.version>
+        <fm-test.version>1.0-SNAPSHOT</fm-test.version>
         <fm-util.version>1.0-SNAPSHOT</fm-util.version>
         <fm-webapp.version>1.0-SNAPSHOT</fm-webapp.version>
     </properties>
@@ -118,6 +120,11 @@
                 <groupId>com.cloudlinkscm</groupId>
                 <artifactId>fm-service</artifactId>
                 <version>${fm-service.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.cloudlinkscm</groupId>
+                <artifactId>fm-test</artifactId>
+                <version>${fm-test.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.cloudlinkscm</groupId>

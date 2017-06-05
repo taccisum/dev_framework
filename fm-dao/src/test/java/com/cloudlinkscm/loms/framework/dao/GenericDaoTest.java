@@ -1,11 +1,14 @@
 package com.cloudlinkscm.loms.framework.dao;
 
 import com.cloudlinkscm.loms.framework.core.pojo.GenericModel;
+import com.cloudlinkscm.loms.framework.dao.exception.DeleteException;
 import com.cloudlinkscm.loms.framework.dao.exception.UpdateException;
 import org.apache.ibatis.session.RowBounds;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
@@ -13,6 +16,7 @@ import java.util.List;
 import static org.mockito.Mockito.*;
 
 /**
+ * todo:: 异常测试
  * @author : tac
  * @date : 2017/5/16
  */
@@ -24,6 +28,9 @@ public class GenericDaoTest {
     private List<TestPojo> entities;
     private Example example;
     private RowBounds rowBounds;
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
 
     @Before
     public void before() {
@@ -40,6 +47,10 @@ public class GenericDaoTest {
         when(mapper.deleteByPrimaryKey(pk)).thenReturn(1);
         Assert.assertEquals(1, dao.deleteByPrimaryKey(pk));
         verify(mapper).deleteByPrimaryKey(pk);
+
+        when(mapper.deleteByPrimaryKey(pk)).thenThrow(Exception.class);
+        thrown.expect(DeleteException.class);
+        dao.deleteByPrimaryKey(pk);
     }
 
     @Test

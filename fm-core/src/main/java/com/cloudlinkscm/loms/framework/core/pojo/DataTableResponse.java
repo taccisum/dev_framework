@@ -5,14 +5,18 @@ package com.cloudlinkscm.loms.framework.core.pojo;
  * @date : 2017/5/22
  */
 public class DataTableResponse<T> {
-    private Integer returnTotalItems;
+    private Long returnTotalItems;
     private T data;
 
-    public Integer getReturnTotalItems() {
+    public Long getReturnTotalItems() {
         return returnTotalItems;
     }
 
     public void setReturnTotalItems(Integer returnTotalItems) {
+        this.returnTotalItems = returnTotalItems.longValue();
+    }
+
+    public void setReturnTotalItems(Long returnTotalItems) {
         this.returnTotalItems = returnTotalItems;
     }
 

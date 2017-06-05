@@ -28,6 +28,7 @@
         <jpa.version>RELEASE</jpa.version>
         <mybatis-mapper.version>1.1.0</mybatis-mapper.version>
         <pagehelper.version>1.1.0</pagehelper.version>
+        <poi.version>3.15</poi.version>
 
         <fm-core.version>1.0-SNAPSHOT</fm-core.version>
         <fm-dao.version>1.0-SNAPSHOT</fm-dao.version>
@@ -100,6 +101,11 @@
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
                 <version>${pagehelper.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi.version}</version>
             </dependency>
 
             <dependency>

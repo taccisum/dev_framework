@@ -18,10 +18,10 @@ public enum GenericErrorCode implements ErrorCode {
     private static HashMap<ErrorCode, String> zh = new HashMap<>();
     private static HashMap<ErrorCode, String> en = new HashMap<>();
     static {
-        zh.put(GenericErrorCode.INVALID_REQUEST_ARGUMENT_EXCEPTION, "无效请求参数");
+        zh.put(GenericErrorCode.INVALID_REQUEST_ARGUMENT_EXCEPTION, "无效请求参数：%s");
     }
     static {
-        en.put(GenericErrorCode.INVALID_REQUEST_ARGUMENT_EXCEPTION, "invalid request argument");
+        en.put(GenericErrorCode.INVALID_REQUEST_ARGUMENT_EXCEPTION, "invalid request argument: %s");
     }
     private static ErrorMessage errorMessage = new ErrorMessage(zh, en);
 

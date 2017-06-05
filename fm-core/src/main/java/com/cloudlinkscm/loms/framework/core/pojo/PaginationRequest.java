@@ -12,9 +12,8 @@ public class PaginationRequest<T> {
     private Integer itemFrom;
     private Integer itemTo;
 
-    @Deprecated
     /**
-     * 由于该字段命名与实际意义不符，请避免在代码中直接使用该getter，使用 {@link #getOffset()} 方法代替
+     * @deprecated 由于该字段命名与实际意义不符，请避免在代码中直接使用该getter，使用 {@link #getOffset()} 方法代替
      */
     public Integer getItemFrom() {
         if (itemFrom == null || itemFrom < 0) {
@@ -23,17 +22,15 @@ public class PaginationRequest<T> {
         return itemFrom;
     }
 
-    @Deprecated
     /**
-     * 由于该字段命名与实际意义不符，请避免在代码中直接使用该setter，使用 {@link #setOffset(Integer)}} 方法代替
+     * @deprecated 由于该字段命名与实际意义不符，请避免在代码中直接使用该setter，使用 {@link #setOffset(Integer)}} 方法代替
      */
     public void setItemFrom(Integer itemFrom) {
         this.itemFrom = itemFrom;
     }
 
-    @Deprecated
     /**
-     * 由于该字段命名与实际意义不符，请避免在代码中直接使用该getter，使用 {@link #getLimit()} 方法代替
+     * @deprecated 由于该字段命名与实际意义不符，请避免在代码中直接使用该getter，使用 {@link #getLimit()} 方法代替
      */
     public Integer getItemTo() {
         if (itemTo == null || itemTo <= 0) {
@@ -42,9 +39,8 @@ public class PaginationRequest<T> {
         return itemTo;
     }
 
-    @Deprecated
     /**
-     * 由于该字段命名与实际意义不符，请避免在代码中直接使用该getter，使用 {@link #setLimit(Integer)} 方法代替
+     * @deprecated 由于该字段命名与实际意义不符，请避免在代码中直接使用该getter，使用 {@link #setLimit(Integer)} 方法代替
      */
     public void setItemTo(Integer itemTo) {
         this.itemTo = itemTo;

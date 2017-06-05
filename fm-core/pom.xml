@@ -2,6 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- fm-core 定义了一些通用，且一经定义后不易修改的核心内容 -->
+
     <parent>
         <artifactId>framework</artifactId>
         <groupId>com.cloudlinkscm</groupId>

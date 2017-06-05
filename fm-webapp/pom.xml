@@ -2,6 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- fm-webapp 定义了一些用于简化web app开发的类及第三方工具集成 -->
+
     <parent>
         <artifactId>framework</artifactId>
         <groupId>com.cloudlinkscm</groupId>

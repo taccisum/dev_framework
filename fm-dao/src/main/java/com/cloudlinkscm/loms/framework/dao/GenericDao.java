@@ -18,6 +18,16 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * 通用的dao基类，用于对mapper的操作做一些封装，以简化编码工作
+ *
+ * <p>在派生类中需要通过构造函数指定从{@link GenericMapper}派生的一个具体的mapper</p>
+ *
+ * <p>
+ *    在某些方法的封装实现中（如{@link #insert(GenericModel)}），会依赖于一些业务数据，
+ *    为了将框架与实际业务解耦，这些业务数据的获取是通过在具体应用中实现的{@link BizDataInterface}
+ *    的bean来获取的
+ * </p>
+ *
  * @author : tac
  * @date : 2017/5/16
  */
@@ -38,7 +48,7 @@ public abstract class GenericDao<E extends GenericModel, PK> {
             DeleteException bizEx = new DeleteException();
             logger.error(getErrorMsg(bizEx), e);
             throw bizEx;
-        }
+    }
         return result;
     }
 

@@ -2,6 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- fm-dao 定义了用于简化dao层开发的通用类等 -->
+
     <parent>
         <artifactId>framework</artifactId>
         <groupId>com.cloudlinkscm</groupId>

@@ -1,14 +1,15 @@
 package com.cloudlinkscm.loms.framework.core.pojo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
 
 /**
- * 实体模型基类
+ * 通用实体模型基类
+ *
+ * 如果是与业务相关的实体模型请使用{@link GenericBizModel}
+ *
  * @author : tac
  * @date : 2017/5/13
  */
@@ -61,6 +62,11 @@ public abstract class GenericModel implements Serializable {
         this.updateTime = updateTime;
     }
 
+    /**
+     * 用于初始化一个新的实体某些字段的默认值
+     * @see #generateId()
+     * @see #setDefault()
+     */
     public final void init(){
         Date currentDate = new Date();
 
@@ -73,6 +79,9 @@ public abstract class GenericModel implements Serializable {
         setDefault();
     }
 
+    /**
+     * 在派生类中可以通过改写该方法来为某些字段赋于默认值
+     */
     protected void setDefault(){
     }
 

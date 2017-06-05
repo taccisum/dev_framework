@@ -14,14 +14,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * spring环境下通用的junit单元测试基类
+ *
  * @author : tac
  * @date : 2017/5/27
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 public abstract class GenericTest {
-
-    @Autowired
-    WebApplicationContext webApplicationContext;
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 

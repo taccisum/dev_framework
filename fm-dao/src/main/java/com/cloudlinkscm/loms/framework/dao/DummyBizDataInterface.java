@@ -3,6 +3,8 @@ package com.cloudlinkscm.loms.framework.dao;
 import com.cloudlinkscm.loms.framework.core.pojo.Language;
 
 /**
+ * 空操作
+ *
  * @author : tac
  * @date : 2017/5/23
  */

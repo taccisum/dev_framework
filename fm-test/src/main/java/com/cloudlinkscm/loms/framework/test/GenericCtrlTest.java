@@ -3,11 +3,13 @@ package com.cloudlinkscm.loms.framework.test;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.WebApplicationContext;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.lang.reflect.ParameterizedType;
@@ -20,10 +22,16 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 /**
  * todo:: test
+ * spring环境下通用的junit controller层单元测试基类
+ *
  * @author : tac
  * @date : 2017/5/27
  */
 public abstract class GenericCtrlTest<T> extends GenericTest {
+
+    @Autowired
+    WebApplicationContext webApplicationContext;
+
     protected MockMvc mvc;
     protected ObjectMapper mapper = new ObjectMapper();
     {

@@ -2,6 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- fm-log 定义了统一的日志输出格式，方便分布式日志系统进行收集、分析 -->
+
     <parent>
         <artifactId>framework</artifactId>
         <groupId>com.cloudlinkscm</groupId>
@@ -11,6 +14,5 @@
 
     <artifactId>fm-log</artifactId>
     <version>${fm-log.version}</version>
-
 
 </project>

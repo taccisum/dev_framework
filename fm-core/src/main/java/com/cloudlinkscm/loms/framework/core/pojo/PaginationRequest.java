@@ -3,12 +3,17 @@ package com.cloudlinkscm.loms.framework.core.pojo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
+ * 定义前端分页数据请求通用数据格式
+ *
+ * 由于字段命名已定义而且带有混淆意味，因此对字段做了适配
+ * 在开发过程中尽量使用offset和limit代替itemFrom和itemTo
+ *
  * @author : tac
  * @date : 2017/5/26
  */
 public class PaginationRequest<T> {
     private static final int DEF_OFFSET = 0;
-    private static final int DEF_PAGE_SIZE = 20;
+    private static final int DEF_LIMIT = 20;
     private Integer itemFrom;
     private Integer itemTo;
 
@@ -34,7 +39,7 @@ public class PaginationRequest<T> {
      */
     public Integer getItemTo() {
         if (itemTo == null || itemTo <= 0) {
-            return DEF_PAGE_SIZE;
+            return getItemFrom() + DEF_LIMIT;
         }
         return itemTo;
     }

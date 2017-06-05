@@ -1,12 +1,13 @@
 package com.cloudlinkscm.loms.framework.core.pojo;
 
 /**
+ * Application Code
  * @author : tac
  * @date : 2017/5/13
  */
 public interface AppCode {
     /**
-     * 获取提示信息（中文）
+     * 获取提示信息（使用默认语言）
      */
     String getMessage();
 
@@ -15,5 +16,8 @@ public interface AppCode {
      */
     String getInternationalMessage(Language language);
 
+    /**
+     * 获取错误码
+     */
     String getCode();
 }

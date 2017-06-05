@@ -14,6 +14,8 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import java.util.List;
 
 /**
+ * restful api请求 响应处理器
+ *
  * @author : tac
  * @date : 2017/5/17
  */
@@ -26,6 +28,9 @@ public class RestfulApiResponseProcessor extends JsonViewReturnValueHandler {
 
 
     @Override
+    /**
+     * 只对{@link RestfulApiResponse}的返回类型进行适配
+     */
     public boolean supportsReturnType(MethodParameter methodParameter) {
         return methodParameter.getParameterType().isAssignableFrom(RestfulApiResponse.class);
     }
@@ -42,6 +47,7 @@ public class RestfulApiResponseProcessor extends JsonViewReturnValueHandler {
             o1 = ResponseAdapterFactory.create(adapterType).doAdapt((RestfulApiResponse) o);
         }catch (Exception e){
             logger.error("it's a error occurred in doAdapt()", e);
+            //执行适配时发生异常，则返回适配前的数据
             super.handleReturnValue(o, methodParameter, modelAndViewContainer, nativeWebRequest);
             return;
         }

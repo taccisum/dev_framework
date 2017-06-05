@@ -3,6 +3,8 @@ package com.cloudlinkscm.loms.framework.core.pojo;
 import java.util.HashMap;
 
 /**
+ * 国际化的错误信息管理类
+ *
  * @author : tac
  * @date : 2017/5/18
  */

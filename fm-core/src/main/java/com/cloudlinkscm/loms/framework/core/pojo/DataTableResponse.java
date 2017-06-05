@@ -1,6 +1,8 @@
 package com.cloudlinkscm.loms.framework.core.pojo;
 
 /**
+ * 定义前端表格控件使用的响应格式
+ *
  * @author : tac
  * @date : 2017/5/22
  */

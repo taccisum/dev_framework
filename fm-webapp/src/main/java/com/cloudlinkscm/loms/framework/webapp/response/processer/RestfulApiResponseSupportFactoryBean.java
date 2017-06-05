@@ -16,6 +16,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 调整handlers的优先级
+ *
+ * <p>
+ *     在spring中，{@link org.springframework.web.bind.annotation.RequestBody}注解对应的处理器处理完后，
+ *     定义在其后面的handler是不会得到执行的，因此要将{@link RestfulApiResponseProcessor}的优先级调整到前面
+ * </p>
+ *
+ * <p>
+ *     通过{@link InitializingBean}，调整优先级的过程将在{@link RequestMappingHandlerAdapter}装配完成后进行
+ * </p>
+ *
  * @author : tac
  * @date : 2017/5/17
  */

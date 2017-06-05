@@ -2,16 +2,14 @@ package com.cloudlinkscm.loms.framework.webapp;
 
 import com.cloudlinkscm.loms.framework.core.exception.BizException;
 import com.cloudlinkscm.loms.framework.core.exception.BizExceptionWithArguments;
-import com.cloudlinkscm.loms.framework.core.pojo.Language;
 import com.cloudlinkscm.loms.framework.core.pojo.RestfulApiResponse;
 import com.cloudlinkscm.loms.framework.dao.BizDataInterface;
-import com.cloudlinkscm.loms.framework.dao.DummyBizDataInterface;
-import com.cloudlinkscm.loms.framework.util.SpringUtils;
 import com.cloudlinkscm.loms.framework.util.WebUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
+import com.cloudlinkscm.loms.framework.core.pojo.ErrorCode;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +18,22 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 /**
- * todo:: test
+ * 全局的异常处理器
+ *
+ * <p>
+ *     此异常处理器会对所有未处理的异常进行统一捕获处理，最终返回统一的响应格式{@link RestfulApiResponse}方便前端处理。
+ * </p>
+ *
+ * <p>
+ *     针对{@link BizException}及{@link BizExceptionWithArguments}及其派生的异常会进行特殊处理，
+ *     通过异常对应的{@link ErrorCode}获取到错误信息及错误码返回给前端展示
+ * </p>
+ *
+ * <p>
+ *     todo:: 未实现
+ *     对于配置为debug模式的应用，异常响应中会包含堆栈跟踪信息，而对于release下的应用，其堆栈跟踪信息则永远为空
+ * </p>
+ *
  * @author : tac
  * @date : 2017/5/16
  */

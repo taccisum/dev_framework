@@ -31,6 +31,9 @@ public class ResponseAdapterFactory {
         adapters.put(type, adapter);
     }
 
+    /**
+     * todo:: 返回adapter单例，create()方法命名不太合适，考虑修改
+     */
     public static ResponseAdapter create(Integer type){
         ResponseAdapter adapter = adapters.get(type);
         if(adapter == null){

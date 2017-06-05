@@ -10,10 +10,12 @@ import java.io.IOException;
 
 /**
  * todo:: test
+ * 一些与http请求响应相关的工具方法
+ *
  * @author : tac
  * @date : 2017/5/16
  */
-public class WebUtils {
+public abstract class WebUtils {
 
     public static void writeJson(HttpServletResponse response, Object obj) throws IOException {
         String json = new ObjectMapper().writeValueAsString(obj);

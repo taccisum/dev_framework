@@ -15,7 +15,7 @@ import org.springframework.core.env.Environment;
  */
 
 @Configuration
-public class SpringUtils implements ApplicationContextAware {
+public abstract class SpringUtils implements ApplicationContextAware {
     public static String applicationName = null;
     public static String applicationAbbr = null;
 

@@ -32,6 +32,7 @@
         <mybatis-mapper.version>1.1.0</mybatis-mapper.version>
         <pagehelper.version>1.1.0</pagehelper.version>
         <poi.version>3.15</poi.version>
+        <logstash-logback.version>4.10</logstash-logback.version>
 
         <fm-core.version>1.0-SNAPSHOT</fm-core.version>
         <fm-dao.version>1.0-SNAPSHOT</fm-dao.version>
@@ -105,6 +106,12 @@
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
                 <version>${pagehelper.version}</version>
             </dependency>
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>${logstash-logback.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.apache.poi</groupId>
                 <artifactId>poi-ooxml</artifactId>

@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    active: test
+  application:
+    name: fm-log
+
+logging:
+  file: ${spring.application.name}
+  logstash:
+    host: localhost
+    port: 8801

@@ -1,0 +1,3 @@
+hercules:
+  debug: false
+  dateFormatPattern: yyyy-MM-dd hh:mm:ss

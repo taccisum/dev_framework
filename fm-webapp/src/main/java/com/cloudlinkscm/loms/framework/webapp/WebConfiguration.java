@@ -1,5 +1,6 @@
 package com.cloudlinkscm.loms.framework.webapp;
 
+import com.cloudlinkscm.loms.framework.core.config.HerculesConfig;
 import com.cloudlinkscm.loms.framework.webapp.response.processer.RestfulApiResponseSupportFactoryBean;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +18,7 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -36,6 +38,10 @@ import java.util.List;
 @Configuration
 @EnableSwagger2
 public class WebConfiguration extends WebMvcConfigurationSupport {
+
+    @Resource
+    private HerculesConfig herculesConfig;
+
     @Override
     public HandlerExceptionResolver handlerExceptionResolver() {
         return new ExceptionHandler();
@@ -84,7 +90,12 @@ public class WebConfiguration extends WebMvcConfigurationSupport {
     protected void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         super.configureMessageConverters(converters);
         ObjectMapper myMapper = new ObjectMapper();
-        myMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));    //日期格式化器
+        myMapper.setDateFormat(new SimpleDateFormat(herculesConfig.getDateFormatPattern()));    //日期格式化器
         converters.add(new MappingJackson2HttpMessageConverter(myMapper));
+    }
+
+    @Bean
+    public SimpleDateFormat commonDateFormat() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     }
 }

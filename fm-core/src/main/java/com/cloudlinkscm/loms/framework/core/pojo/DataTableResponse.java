@@ -14,10 +14,6 @@ public class DataTableResponse<T> {
         return returnTotalItems;
     }
 
-    public void setReturnTotalItems(Integer returnTotalItems) {
-        this.returnTotalItems = returnTotalItems.longValue();
-    }
-
     public void setReturnTotalItems(Long returnTotalItems) {
         this.returnTotalItems = returnTotalItems;
     }

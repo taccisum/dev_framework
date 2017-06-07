@@ -91,11 +91,8 @@ public class WebConfiguration extends WebMvcConfigurationSupport {
         super.configureMessageConverters(converters);
         ObjectMapper myMapper = new ObjectMapper();
         myMapper.setDateFormat(new SimpleDateFormat(herculesConfig.getDateFormatPattern()));    //日期格式化器
+//        myMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"));    //日期格式化器
         converters.add(new MappingJackson2HttpMessageConverter(myMapper));
     }
 
-    @Bean
-    public SimpleDateFormat commonDateFormat() {
-        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    }
 }

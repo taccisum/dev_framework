@@ -19,6 +19,9 @@ public class HerculesConfig {
     private String dateFormatPattern;
 
     public Boolean getDebug() {
+        if(debug == null){
+            return false;
+        }
         return debug;
     }
 
@@ -27,6 +30,9 @@ public class HerculesConfig {
     }
 
     public String getDateFormatPattern() {
+        if(dateFormatPattern == null){
+            return "yyyy-MM-dd hh:mm:ss";
+        }
         return dateFormatPattern;
     }
 

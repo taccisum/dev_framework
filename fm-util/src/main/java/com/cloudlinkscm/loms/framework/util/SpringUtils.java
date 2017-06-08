@@ -4,8 +4,8 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ApplicationEvent;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
 
 /**
  *
@@ -14,8 +14,8 @@ import org.springframework.core.env.Environment;
  * @date : 2017/5/13
  */
 
-@Configuration
-public abstract class SpringUtils implements ApplicationContextAware {
+@Component
+public class SpringUtils implements ApplicationContextAware {
     public static String applicationName = null;
     public static String applicationAbbr = null;
 

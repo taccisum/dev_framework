@@ -12,6 +12,7 @@ import org.junit.rules.ExpectedException;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.mockito.Mockito.*;
 
@@ -196,6 +197,11 @@ public class GenericDaoTest {
 
         protected String currentUserId() {
             return "";
+        }
+
+        @Override
+        protected String generateId() {
+            return UUID.randomUUID().toString().replace("-","");
         }
     }
 }

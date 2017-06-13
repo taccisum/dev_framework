@@ -85,7 +85,5 @@ public abstract class GenericModel<PK> implements Serializable {
     protected void setDefault(){
     }
 
-    protected PK generateId() {
-        return (PK) UUID.randomUUID().toString().replace("-","");
-    }
+    protected abstract PK generateId();
 }

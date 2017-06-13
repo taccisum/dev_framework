@@ -14,19 +14,19 @@ import java.util.UUID;
  * @date : 2017/5/13
  */
 
-public abstract class GenericModel implements Serializable {
+public abstract class GenericModel<PK> implements Serializable {
     @Id
-    private String id;
+    private PK id;
     private String insertUser;
     private Date insertTime;
     private String updateUser;
     private Date updateTime;
 
-    public String getId() {
+    public PK getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(PK id) {
         this.id = id;
     }
 
@@ -85,7 +85,7 @@ public abstract class GenericModel implements Serializable {
     protected void setDefault(){
     }
 
-    protected String generateId() {
-        return UUID.randomUUID().toString().replace("-","");
+    protected PK generateId() {
+        return (PK) UUID.randomUUID().toString().replace("-","");
     }
 }

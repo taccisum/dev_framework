@@ -2,10 +2,11 @@ package com.cloudlinkscm.loms.framework.core.pojo;
 
 /**
  * 与业务相关的实体模型基类
+ *
  * @author : tac
  * @date : 2017/5/16
  */
-public abstract class GenericBizModel extends GenericModel {
+public abstract class GenericBizModel<PK> extends GenericModel<PK> {
 
     /**
      * 租户id

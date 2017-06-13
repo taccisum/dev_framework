@@ -192,7 +192,7 @@ public class GenericDaoTest {
         }
     }
 
-    class TestPojo extends GenericModel {
+    class TestPojo extends GenericModel<String> {
 
         protected String currentUserId() {
             return "";

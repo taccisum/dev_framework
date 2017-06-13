@@ -1,5 +1,6 @@
 package com.cloudlinkscm;
 
+import com.cloudlinkscm.loms.framework.webapp.response.processer.adapter.ResponseAdapterFactory;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 
@@ -21,7 +22,7 @@ public class ExceptionHandlerTest extends BaseTest {
 
     @Test
     public void testSysException() throws Exception {
-        String responseStr =  mvc.perform(post("/demo/sys_exception")
+        String responseStr =  mvc.perform(post("/demo/sys_exception?adaptTo=233")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("")
                 .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))

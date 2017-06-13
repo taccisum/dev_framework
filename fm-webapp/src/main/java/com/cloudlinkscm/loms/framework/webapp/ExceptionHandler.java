@@ -5,6 +5,7 @@ import com.cloudlinkscm.loms.framework.core.exception.BizExceptionWithArguments;
 import com.cloudlinkscm.loms.framework.core.pojo.RestfulApiResponse;
 import com.cloudlinkscm.loms.framework.dao.BizDataInterface;
 import com.cloudlinkscm.loms.framework.util.WebUtils;
+import com.cloudlinkscm.loms.framework.webapp.response.processer.adapter.ResponseAdapterFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerExceptionResolver;
@@ -54,9 +55,20 @@ public class ExceptionHandler implements HandlerExceptionResolver {
         } else {
             result = handlerSysException(ex);
         }
+        Integer adapterType = 0;
+        try {
+            adapterType = Integer.parseInt(request.getParameter("adaptTo"));
+        }catch (NumberFormatException ignored){}
+
+        Object o1 = null;
+        try {
+            o1 = ResponseAdapterFactory.create(adapterType).doAdapt((RestfulApiResponse) result);
+        }catch (Exception e){
+            o1 = result;
+        }
 
         try {
-            WebUtils.writeJson(response, result);
+            WebUtils.writeJson(response, o1);
         } catch (IOException e) {
             LOG.error("http响应流写入异常", e);
         }

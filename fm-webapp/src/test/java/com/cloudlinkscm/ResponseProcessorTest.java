@@ -44,6 +44,16 @@ public class ResponseProcessorTest extends BaseTest {
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
+
+        String exceptionResponseStr =  mvc.perform(post("/demo/sys_exception?adaptTo=233")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("")
+                .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
     }
 
     static class Demo{

@@ -6,7 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * 定义一些在具体的微服务运行时才能获取到的数据的获取接口
+ * 定义一些在运行时才能获取到的（如从别的服务获取）业务数据接口
  *
  * @author : tac
  * @date : 2017/5/15

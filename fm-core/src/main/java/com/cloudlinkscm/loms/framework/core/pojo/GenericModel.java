@@ -3,12 +3,21 @@ package com.cloudlinkscm.loms.framework.core.pojo;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.UUID;
+import com.cloudlinkscm.loms.framework.util.BeanUtils;
 
 /**
  * 通用实体模型基类
  *
- * 如果是与业务相关的实体模型请使用{@link GenericBizModel}
+ * <p>如果是与业务相关的实体模型请使用{@link GenericBizModel}</p>
+ *
+ * <p>
+ *     由于使用了泛型主键，在运行时id的类型将被擦除为{@link Object}，因此使用{@link BeanUtils}
+ *     将实体类的值复制到dto对象时将无法正常复制id，解决方案有二：
+ *     <ul>
+ *         <li>在实际代码中手动赋值：{@code dto.setId(entity.getId())}</li>
+ *         <li>将dto中的id类型更改为{@link Object}</li>
+ *     </ul>
+ * </p>
  *
  * @author : tac
  * @date : 2017/5/13

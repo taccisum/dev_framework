@@ -6,7 +6,7 @@ package com.cloudlinkscm.loms.framework.core.pojo;
  * @author : tac
  * @date : 2017/6/15
  */
-public interface Assembler<DTO, ENTITY> {
-    DTO toDto(ENTITY entity);
-    ENTITY toEntity(DTO dto);
+public interface Assembler<DTO, BO> {
+    DTO toDto(BO bo);
+    BO toEntity(DTO dto);
 }

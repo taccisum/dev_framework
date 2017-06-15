@@ -8,5 +8,5 @@ package com.cloudlinkscm.loms.framework.core.pojo;
  */
 public interface Assembler<DTO, BO> {
     DTO toDto(BO bo);
-    BO toEntity(DTO dto);
+    BO toBo(DTO dto);
 }

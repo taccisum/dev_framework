@@ -16,6 +16,7 @@ public class PaginationRequest<T> {
     private static final int DEF_LIMIT = 20;
     private Integer itemFrom;
     private Integer itemTo;
+    private T filter;
 
     /**
      * @deprecated 由于该字段命名与实际意义不符，请避免在代码中直接使用该getter，使用 {@link #getOffset()} 方法代替
@@ -81,4 +82,11 @@ public class PaginationRequest<T> {
         return getLimit();
     }
 
+    public T getFilter() {
+        return filter;
+    }
+
+    public void setFilter(T filter) {
+        this.filter = filter;
+    }
 }

@@ -12,7 +12,7 @@ import tk.mybatis.mapper.entity.Example;
  * @date : 2017/6/20
  */
 public abstract class GenericBizDao<E extends GenericBizModel, PK> extends GenericDao<E, PK> {
-    private static final String TENANT_ID_FIELD_NAME = "tenant_id";
+    protected static final String TENANT_ID_FIELD_NAME = "tenantId";
 
     protected GenericMapper<E> mapper;
 
@@ -44,6 +44,6 @@ public abstract class GenericBizDao<E extends GenericBizModel, PK> extends Gener
             criteria = example.getOredCriteria().get(0);
         }
 
-        criteria.andCondition(TENANT_ID_FIELD_NAME, currentUserTenantId());
+        criteria.andEqualTo(TENANT_ID_FIELD_NAME, currentUserTenantId());
     }
 }

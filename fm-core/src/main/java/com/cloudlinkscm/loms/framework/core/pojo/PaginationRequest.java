@@ -15,9 +15,9 @@ import io.swagger.annotations.ApiModelProperty;
 public abstract class PaginationRequest {
     private static final int DEF_OFFSET = 0;
     private static final int DEF_LIMIT = 20;
-    @ApiModelProperty(required = true, example = "0")
+    @ApiModelProperty(example = "0")
     private Integer itemFrom;
-    @ApiModelProperty(required = true, example = "20")
+    @ApiModelProperty(example = "20")
     private Integer itemTo;
 
     /**

@@ -12,14 +12,14 @@ public class RestfulApiResponseTest {
     @Test
     public void testSuccess() {
         RestfulApiResponse successResponse = RestfulApiResponse.success();
-        Assert.assertEquals(1, successResponse.getReturnCode().intValue());
-        Assert.assertEquals("1", successResponse.getErrorCode());
+        Assert.assertEquals(0, successResponse.getReturnCode().intValue());
+        Assert.assertEquals("0", successResponse.getErrorCode());
     }
 
     @Test
     public void testFailure() {
         RestfulApiResponse failureResponse = RestfulApiResponse.failure("123", "", "");
-        Assert.assertEquals(0, failureResponse.getReturnCode().intValue());
+        Assert.assertEquals(1, failureResponse.getReturnCode().intValue());
     }
 
     @Test

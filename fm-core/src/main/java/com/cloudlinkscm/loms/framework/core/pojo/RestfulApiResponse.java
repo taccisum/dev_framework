@@ -19,7 +19,7 @@ public class RestfulApiResponse<T> {
     private String errorCode;
     @ApiModelProperty(value = "错误提示信息", example = "操作成功")
     private String returnMsg;
-    @ApiModelProperty(value = "返回数据", required = true, example = "null")
+    @ApiModelProperty(value = "返回数据", required = true, example = "{}")
     private T result;
     /**
      * 堆栈追踪信息（请仅在debug模式下返回此值，否则应为空字符串）

@@ -12,14 +12,13 @@ import io.swagger.annotations.ApiModelProperty;
  * @author : tac
  * @date : 2017/5/26
  */
-public class PaginationRequest<T> {
+public abstract class PaginationRequest {
     private static final int DEF_OFFSET = 0;
     private static final int DEF_LIMIT = 20;
     @ApiModelProperty(required = true, example = "0")
     private Integer itemFrom;
     @ApiModelProperty(required = true, example = "20")
     private Integer itemTo;
-    private T filter;
 
     /**
      * @deprecated 由于该字段命名与实际意义不符，请避免在代码中直接使用该getter，使用 {@link #getOffset()} 方法代替
@@ -83,13 +82,5 @@ public class PaginationRequest<T> {
     @JsonIgnore
     public Integer getPageSize(){
         return getLimit();
-    }
-
-    public T getFilter() {
-        return filter;
-    }
-
-    public void setFilter(T filter) {
-        this.filter = filter;
     }
 }

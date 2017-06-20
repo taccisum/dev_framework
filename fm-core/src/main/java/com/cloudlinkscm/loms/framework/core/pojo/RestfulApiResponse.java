@@ -1,37 +1,30 @@
 package com.cloudlinkscm.loms.framework.core.pojo;
 
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * restful api统一响应model
  * @author : tac
  * @date : 2017/5/13
  */
 public class RestfulApiResponse<T> {
-    private static final String SUCCESS_CODE = "1";
-    private static final int SUCCESS_STATE = 1;
-    private static final int FAILURE_STATE = 0;
-    private static final int ERROR_STATE = -1;
-    /**
-     * 执行状态
-     * 1：成功
-     * 0：失败（业务异常）
-     * -1：错误（系统异常）
-     */
+    public static final String SUCCESS_CODE = "0";
+    public static final int SUCCESS_STATE = 0;      //成功
+    public static final int FAILURE_STATE = 1;      //失败（业务异常）
+    public static final int ERROR_STATE = -1;       //错误（系统异常）
+
+    @ApiModelProperty(value = "请求执行状态", required = true, example = "0", allowableValues = "-1, 0, 1")
     private Integer returnCode;
-    /**
-     * 错误码
-     */
+    @ApiModelProperty(value = "具体的错误码", example = "0", allowableValues = "range[0, 50000]")
     private String errorCode;
-    /**
-     * 提示信息
-     */
+    @ApiModelProperty(value = "错误提示信息", example = "操作成功")
     private String returnMsg;
-    /**
-     * 返回数据
-     */
+    @ApiModelProperty(value = "返回数据", required = true, example = "null")
     private T result;
     /**
      * 堆栈追踪信息（请仅在debug模式下返回此值，否则应为空字符串）
      */
+    @ApiModelProperty(value = "堆栈追踪信息", example = "")
     private String stackTrace;
 
     public RestfulApiResponse(){

@@ -1,14 +1,12 @@
 package com.cloudlinkscm.loms.framework.dao;
 
 import com.cloudlinkscm.loms.framework.core.exception.BizException;
-import com.cloudlinkscm.loms.framework.core.pojo.GenericBizModel;
 import com.cloudlinkscm.loms.framework.core.pojo.GenericModel;
 import com.cloudlinkscm.loms.framework.core.pojo.Language;
 import com.cloudlinkscm.loms.framework.dao.exception.DeleteException;
 import com.cloudlinkscm.loms.framework.dao.exception.InsertException;
 import com.cloudlinkscm.loms.framework.dao.exception.QueryException;
 import com.cloudlinkscm.loms.framework.dao.exception.UpdateException;
-import com.cloudlinkscm.loms.framework.util.SpringUtils;
 import org.apache.ibatis.session.RowBounds;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,10 +26,13 @@ import java.util.List;
  *    的bean来获取的
  * </p>
  *
+ * todo:: test select by boundary
  * @author : tac
  * @date : 2017/5/16
  */
 public abstract class GenericDao<E extends GenericModel, PK> {
+    private static final boolean BOUNDARY_DEFAULT = true;
+
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
     protected GenericMapper<E> mapper;
@@ -41,53 +42,45 @@ public abstract class GenericDao<E extends GenericModel, PK> {
     }
 
     public int deleteByPrimaryKey(PK pk) {
-        int result = 0;
         try {
-            result = mapper.deleteByPrimaryKey(pk);
+            return mapper.deleteByPrimaryKey(pk);
         } catch (Exception e) {
             DeleteException bizEx = new DeleteException();
             logger.error(getErrorMsg(bizEx), e);
             throw bizEx;
-    }
-        return result;
+        }
     }
 
     public int delete(E entity) {
-        int result = 0;
         try {
-            result = mapper.delete(entity);
+            return mapper.delete(entity);
         } catch (Exception e) {
             DeleteException bizEx = new DeleteException();
             logger.error(getErrorMsg(bizEx), e);
             throw bizEx;
         }
-        return result;
     }
 
     public int insert(E entity) {
-        int result = 0;
         try {
             setInsertDefault(entity);
-            result = mapper.insert(entity);
+            return mapper.insert(entity);
         } catch (Exception e) {
             InsertException bizEx = new InsertException();
             logger.error(getErrorMsg(bizEx), e);
             throw bizEx;
         }
-        return result;
     }
 
     public int insertSelective(E entity) {
-        int result = 0;
         try {
             setInsertDefault(entity);
-            result = mapper.insertSelective(entity);
+            return mapper.insertSelective(entity);
         } catch (Exception e) {
             InsertException bizEx = new InsertException();
             logger.error(getErrorMsg(bizEx), e);
             throw bizEx;
         }
-        return result;
     }
 
     public List<E> selectAll() {
@@ -112,6 +105,13 @@ public abstract class GenericDao<E extends GenericModel, PK> {
     }
 
     public int selectCount(E criteria) {
+        return selectCount(criteria, BOUNDARY_DEFAULT);
+    }
+
+    public int selectCount(E criteria, boolean boundary) {
+        if(boundary){
+            setBoundary(criteria);
+        }
         try {
             return mapper.selectCount(criteria);
         }
@@ -123,72 +123,91 @@ public abstract class GenericDao<E extends GenericModel, PK> {
     }
 
     public List<E> select(E criteria) {
+        return select(criteria, BOUNDARY_DEFAULT);
+    }
+
+    public List<E> select(E criteria, boolean boundary) {
+        if(boundary){
+            setBoundary(criteria);
+        }
         try {
             return mapper.select(criteria);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             QueryException bizEx = new QueryException();
             logger.error(getErrorMsg(bizEx), e);
             throw bizEx;
         }
     }
+
 
     public E selectOne(E criteria) {
+        return selectOne(criteria, BOUNDARY_DEFAULT);
+    }
+
+    public E selectOne(E criteria, boolean boundary) {
+        if(boundary){
+            setBoundary(criteria);
+        }
         try {
             return mapper.selectOne(criteria);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             QueryException bizEx = new QueryException();
             logger.error(getErrorMsg(bizEx), e);
             throw bizEx;
         }
     }
-
     public int updateByPrimaryKey(E entity) {
-        int result = 0;
         try {
             if (entity.getId() == null) {
                 throw new IllegalArgumentException("id不能为空");
             }
             setUpdateDefault(entity);
-            result = mapper.updateByPrimaryKey(entity);
+            return mapper.updateByPrimaryKey(entity);
         } catch (Exception e) {
             UpdateException bizEx = new UpdateException();
             logger.error(getErrorMsg(bizEx), e);
             throw bizEx;
         }
-        return result;
     }
 
     public int updateByPrimaryKeySelective(E entity) {
-        int result = 0;
         try {
             if (entity.getId() == null) {
                 throw new IllegalArgumentException("id不能为空");
             }
             setUpdateDefault(entity);
-            result = mapper.updateByPrimaryKeySelective(entity);
+            return mapper.updateByPrimaryKeySelective(entity);
         } catch (Exception e) {
             UpdateException bizEx = new UpdateException();
             logger.error(getErrorMsg(bizEx), e);
             throw bizEx;
         }
-        return result;
     }
 
     public int deleteByExample(Example example) {
-        int result = 0;
+        return deleteByExample(example, BOUNDARY_DEFAULT);
+    }
+
+    public int deleteByExample(Example example, boolean boundary) {
+        if(boundary){
+            setBoundary(example);
+        }
         try {
-            result = mapper.deleteByExample(example);
+            return mapper.deleteByExample(example);
         } catch (Exception e) {
             DeleteException bizEx = new DeleteException();
             logger.error(getErrorMsg(bizEx), e);
             throw bizEx;
         }
-        return result;
     }
 
     public List<E> selectByExample(Example example) {
+        return selectByExample(example, BOUNDARY_DEFAULT);
+    }
+    public List<E> selectByExample(Example example, boolean boundary) {
+        if(boundary){
+            setBoundary(example);
+        }
         try {
             return mapper.selectByExample(example);
         }
@@ -200,6 +219,13 @@ public abstract class GenericDao<E extends GenericModel, PK> {
     }
 
     public int selectCountByExample(Example example) {
+        return selectCountByExample(example, BOUNDARY_DEFAULT);
+    }
+
+    public int selectCountByExample(Example example, boolean boundary) {
+        if(boundary){
+            setBoundary(example);
+        }
         try {
             return mapper.selectCountByExample(example);
         }
@@ -211,47 +237,69 @@ public abstract class GenericDao<E extends GenericModel, PK> {
     }
 
     public int updateByExample(E entity, Example example) {
-        int result = 0;
+        return updateByExample(entity, example, BOUNDARY_DEFAULT);
+    }
+
+    public int updateByExample(E entity, Example example, boolean boundary) {
+        if(boundary){
+            setBoundary(example);
+        }
         try {
             setUpdateDefault(entity);
-            result = mapper.updateByExample(entity, example);
+            return mapper.updateByExample(entity, example);
         } catch (Exception e) {
             UpdateException bizEx = new UpdateException();
             logger.error(getErrorMsg(bizEx), e);
             throw bizEx;
         }
-        return result;
     }
 
     public int updateByExampleSelective(E entity, Example example) {
-        int result = 0;
+        return updateByExampleSelective(entity, example, BOUNDARY_DEFAULT);
+    }
+
+    public int updateByExampleSelective(E entity, Example example, boolean boundary) {
+        if(boundary){
+            setBoundary(example);
+        }
         try {
             setUpdateDefault(entity);
-            result = mapper.updateByExampleSelective(entity, example);
+            return mapper.updateByExampleSelective(entity, example);
         } catch (Exception e) {
             UpdateException bizEx = new UpdateException();
             logger.error(getErrorMsg(bizEx), e);
             throw bizEx;
         }
-        return result;
     }
 
     public List<E> selectByExampleAndRowBounds(Example example, RowBounds rowBounds) {
+        return selectByExampleAndRowBounds(example, rowBounds, BOUNDARY_DEFAULT);
+    }
+
+    public List<E> selectByExampleAndRowBounds(Example example, RowBounds rowBounds, boolean boundary) {
+        if (boundary) {
+            setBoundary(example);
+        }
         try {
             return mapper.selectByExampleAndRowBounds(example, rowBounds);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             QueryException bizEx = new QueryException();
             logger.error(getErrorMsg(bizEx), e);
             throw bizEx;
         }
     }
 
-    public List<E> selectByRowBounds(E entity, RowBounds rowBounds) {
-        try {
-            return mapper.selectByRowBounds(entity, rowBounds);
+    public List<E> selectByRowBounds(E criteria, RowBounds rowBounds) {
+        return selectByRowBounds(criteria, rowBounds, BOUNDARY_DEFAULT);
+    }
+
+    public List<E> selectByRowBounds(E criteria, RowBounds rowBounds, boolean boundary) {
+        if(boundary){
+            setBoundary(criteria);
         }
-        catch (Exception e) {
+        try {
+            return mapper.selectByRowBounds(criteria, rowBounds);
+        } catch (Exception e) {
             QueryException bizEx = new QueryException();
             logger.error(getErrorMsg(bizEx), e);
             throw bizEx;
@@ -262,25 +310,18 @@ public abstract class GenericDao<E extends GenericModel, PK> {
     protected String currentUserId(){
         return BizDataInterface.getBean().currentUserId();
     }
-    protected String currentUserTenantId(){
-        return BizDataInterface.getBean().currentUserTenantId();
-    }
 
-    private void setInsertDefault(E entity) {
+    protected void setInsertDefault(E entity) {
         entity.init();
         entity.setInsertUser(currentUserId());
-
-        if(entity instanceof GenericBizModel){
-            GenericBizModel temp = (GenericBizModel)entity;
-            if(temp.getTenantId() == null){
-                temp.setTenantId(currentUserTenantId());
-            }
-        }
     }
-
-    private void setUpdateDefault(E entity) {
+    protected void setUpdateDefault(E entity) {
         entity.setUpdateTime(new Date());
         entity.setUpdateUser(currentUserId());
+    }
+    protected void setBoundary(E criteria) {
+    }
+    protected void setBoundary(Example example) {
     }
 
     private String getErrorMsg(BizException bizEx) {

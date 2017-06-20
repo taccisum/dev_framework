@@ -1,7 +1,7 @@
 package com.cloudlinkscm.loms.framework.core.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiParam;
 
 /**
  * 定义前端分页数据请求通用数据格式
@@ -15,9 +15,9 @@ import io.swagger.annotations.ApiModelProperty;
 public abstract class PaginationRequest {
     private static final int DEF_OFFSET = 0;
     private static final int DEF_LIMIT = 20;
-    @ApiModelProperty(example = "0")
+    @ApiParam(value = "&lt;={分页区间开始坐标}", defaultValue = "0")
     private Integer itemFrom;
-    @ApiModelProperty(example = "20")
+    @ApiParam(value = "&gt;{分页区间结束坐标}", defaultValue = "20")
     private Integer itemTo;
 
     /**

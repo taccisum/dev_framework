@@ -35,6 +35,10 @@
             <artifactId>persistence-api</artifactId>
         </dependency>
         <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.cloudlinkscm</groupId>
             <artifactId>fm-util</artifactId>
         </dependency>

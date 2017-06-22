@@ -9,7 +9,7 @@
     <groupId>com.cloudlinkscm</groupId>
     <artifactId>framework</artifactId>
     <packaging>pom</packaging>
-    <version>${fm.version}</version>
+    <version>${framework.version}</version>
     <modules>
         <module>fm-core</module>
         <module>fm-dao</module>
@@ -22,15 +22,15 @@
     </modules>
 
     <properties>
-        <fm.version>1.0.1.SNAPSHOT</fm.version>
-        <fm-client.version>${fm.version}</fm-client.version>
-        <fm-core.version>${fm.version}</fm-core.version>
-        <fm-dao.version>${fm.version}</fm-dao.version>
-        <fm-log.version>${fm.version}</fm-log.version>
-        <fm-service.version>${fm.version}</fm-service.version>
-        <fm-test.version>${fm.version}</fm-test.version>
-        <fm-util.version>${fm.version}</fm-util.version>
-        <fm-webapp.version>${fm.version}</fm-webapp.version>
+        <framework.version>1.0.1-SNAPSHOT</framework.version>
+        <fm-client.version>${framework.version}</fm-client.version>
+        <fm-core.version>${framework.version}</fm-core.version>
+        <fm-dao.version>${framework.version}</fm-dao.version>
+        <fm-log.version>${framework.version}</fm-log.version>
+        <fm-service.version>${framework.version}</fm-service.version>
+        <fm-test.version>${framework.version}</fm-test.version>
+        <fm-util.version>${framework.version}</fm-util.version>
+        <fm-webapp.version>${framework.version}</fm-webapp.version>
 
         <spring-cloud.version>Camden.SR2</spring-cloud.version>
 
@@ -192,25 +192,12 @@
     </dependencyManagement>
 
     <distributionManagement>
-
-        <!-- local -->
-        <!--<repository>-->
-            <!--<id>nexus-local</id>-->
-            <!--<name>releases</name>-->
-            <!--<url>http://localhost:8081/nexus/content/repositories/releases/</url>-->
-        <!--</repository>-->
-        <!--<repository>-->
-            <!--<id>nexus-local</id>-->
-            <!--<name>snapshots</name>-->
-            <!--<url>http://localhost:8081/nexus/content/repositories/snapshots/</url>-->
-        <!--</repository>-->
-
         <!-- remote -->
-        <!--<repository>-->
-            <!--<id>nexus-hercules</id>-->
-            <!--<name>releases</name>-->
-            <!--<url>http://10.0.20.127:8081/nexus/content/repositories/releases/</url>-->
-        <!--</repository>-->
+        <repository>
+            <id>nexus-hercules</id>
+            <name>releases</name>
+            <url>http://10.0.20.127:8081/nexus/content/repositories/releases/</url>
+        </repository>
         <snapshotRepository>
             <id>nexus-hercules</id>
             <name>snapshots</name>
@@ -219,6 +206,13 @@
 
     </distributionManagement>
 
+    <repositories>
+        <repository>
+            <id>nexus-hercules</id>
+            <name>Nexus public Repository</name>
+            <url>http://10.0.20.127:8081/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>

@@ -37,13 +37,20 @@ public abstract class GenericBizDao<E extends GenericBizModel, PK> extends Gener
 
     protected void setBoundary(Example example) {
 //      以租户为边界过滤
-        Example.Criteria criteria;
+        Example.Criteria criteria ;
+
         if (example.getOredCriteria().size() == 0) {
             criteria = example.createCriteria();
+            setBoundaryCriteria(criteria);
         } else {
-            criteria = example.getOredCriteria().get(0);
+            for(Example.Criteria c : example.getOredCriteria()){
+                setBoundaryCriteria(c);
+            }
         }
 
+    }
+
+    private void setBoundaryCriteria(Example.Criteria criteria) {
         criteria.andEqualTo(TENANT_ID_FIELD_NAME, currentUserTenantId());
     }
 }

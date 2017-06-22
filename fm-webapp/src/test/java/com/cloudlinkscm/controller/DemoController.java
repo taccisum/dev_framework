@@ -4,6 +4,8 @@ import com.cloudlinkscm.loms.framework.core.exception.BizException;
 import com.cloudlinkscm.loms.framework.core.pojo.ErrorCode;
 import com.cloudlinkscm.loms.framework.core.pojo.Language;
 import com.cloudlinkscm.loms.framework.core.pojo.RestfulApiResponse;
+import com.cloudlinkscm.model.Demo;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -54,7 +56,7 @@ public class DemoController {
     }
 
     @RequestMapping("/date_formatter")
-    public RestfulApiResponse<Date> dateFormatter(){
-        return RestfulApiResponse.success("操作成功", new Date());
+    public RestfulApiResponse<Date> dateFormatter(@RequestBody Demo demo){
+        return RestfulApiResponse.success("操作成功", demo.getDate());
     }
 }

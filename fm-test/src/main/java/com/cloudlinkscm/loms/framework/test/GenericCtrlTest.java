@@ -1,5 +1,6 @@
 package com.cloudlinkscm.loms.framework.test;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
@@ -43,13 +44,8 @@ public abstract class GenericCtrlTest<T> extends GenericTest {
         mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
 
-
-    protected T perform(String path, Object arg, RequestMethod method) throws Exception {
-        return perform(path, arg, method, null);
-    }
-
-    protected T perform(String path, Object arg, RequestMethod method, Class cls) throws Exception {
-        String json = mapper.writeValueAsString(arg);
+    protected T perform(String path, Object data, RequestMethod method, TypeReference<T> typeReference) throws Exception {
+        String json = mapper.writeValueAsString(data);
         logger.info(path + "请求参数" + json);
         String responseStr =  mvc.perform(doRequest(path, method)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -60,12 +56,24 @@ public abstract class GenericCtrlTest<T> extends GenericTest {
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
-        if (cls == null) {
-            return (T) mapper.readValue(responseStr, getGenericClass(0));
-        }else{
-            JavaType type = mapper.getTypeFactory().constructParametricType(getGenericClass(0), cls);
-            return mapper.readValue(responseStr, type);
-        }
+
+        return mapper.readValue(responseStr, typeReference);
+    }
+
+    protected T perform(String path, Object data, RequestMethod method, Class<T> cls) throws Exception {
+        String json = mapper.writeValueAsString(data);
+        logger.info(path + "请求参数" + json);
+        String responseStr =  mvc.perform(doRequest(path, method)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json)
+                .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+
+        return mapper.readValue(responseStr, cls);
     }
 
     private MockHttpServletRequestBuilder doRequest(String path, RequestMethod method) {
@@ -88,11 +96,5 @@ public abstract class GenericCtrlTest<T> extends GenericTest {
                 throw new NotImplementedException();
         }
         return m;
-    }
-
-    private Class getGenericClass(int index) {
-        Type genType = getClass().getGenericSuperclass();
-        Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
-        return (Class)params[index];
     }
 }

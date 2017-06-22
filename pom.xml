@@ -4,13 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <!-- 微服务通用开发框架 -->
-
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.cloudlinkscm</groupId>
     <artifactId>framework</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>${fm.version}</version>
     <modules>
         <module>fm-core</module>
         <module>fm-dao</module>
@@ -23,6 +22,16 @@
     </modules>
 
     <properties>
+        <fm.version>1.0.1.SNAPSHOT</fm.version>
+        <fm-client.version>${fm.version}</fm-client.version>
+        <fm-core.version>${fm.version}</fm-core.version>
+        <fm-dao.version>${fm.version}</fm-dao.version>
+        <fm-log.version>${fm.version}</fm-log.version>
+        <fm-service.version>${fm.version}</fm-service.version>
+        <fm-test.version>${fm.version}</fm-test.version>
+        <fm-util.version>${fm.version}</fm-util.version>
+        <fm-webapp.version>${fm.version}</fm-webapp.version>
+
         <spring-cloud.version>Camden.SR2</spring-cloud.version>
 
         <jackson.version>2.8.1</jackson.version>
@@ -39,15 +48,7 @@
         <swagger2.version>2.6.1</swagger2.version>
         <swagger-ui.version>2.6.1</swagger-ui.version>
         <swagger-annotations.version>1.5.10</swagger-annotations.version>
-
-        <fm-client.version>1.0-SNAPSHOT</fm-client.version>
-        <fm-core.version>1.0-SNAPSHOT</fm-core.version>
-        <fm-dao.version>1.0-SNAPSHOT</fm-dao.version>
-        <fm-log.version>1.0-SNAPSHOT</fm-log.version>
-        <fm-service.version>1.0-SNAPSHOT</fm-service.version>
-        <fm-test.version>1.0-SNAPSHOT</fm-test.version>
-        <fm-util.version>1.0-SNAPSHOT</fm-util.version>
-        <fm-webapp.version>1.0-SNAPSHOT</fm-webapp.version>
+        <joda-time.version>2.9.9</joda-time.version>
     </properties>
 
 
@@ -135,6 +136,11 @@
                 <artifactId>swagger-annotations</artifactId>
                 <version>${swagger-annotations.version}</version>
             </dependency>
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>${joda-time.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.apache.poi</groupId>
@@ -186,40 +192,33 @@
     </dependencyManagement>
 
     <distributionManagement>
-        <!--<repository>-->
-            <!--<id>nexus-releases</id>-->
-            <!--<name>nexus releases</name>-->
-            <!--<url>http://10.0.20.127:8081/nexus/content/repositories/releases/</url>-->
-        <!--</repository>-->
-        <!--<snapshotRepository>-->
-            <!--<id>nexus-snapshots</id>-->
-            <!--<name>nexus snapshots</name>-->
-            <!--<url>http://10.0.20.127:8081/nexus/content/repositories/snapshots/</url>-->
-        <!--</snapshotRepository>-->
-        <repository>
-            <id>nexus-releases</id>
-            <name>nexus releases</name>
-            <url>http://localhost:8081/nexus/content/repositories/releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>nexus-snapshots</id>
-            <name>nexus snapshots</name>
-            <url>http://localhost:8081/nexus/content/repositories/snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
 
-    <repositories>
+        <!-- local -->
+        <!--<repository>-->
+            <!--<id>nexus-local</id>-->
+            <!--<name>releases</name>-->
+            <!--<url>http://localhost:8081/nexus/content/repositories/releases/</url>-->
+        <!--</repository>-->
+        <!--<repository>-->
+            <!--<id>nexus-local</id>-->
+            <!--<name>snapshots</name>-->
+            <!--<url>http://localhost:8081/nexus/content/repositories/snapshots/</url>-->
+        <!--</repository>-->
+
+        <!-- remote -->
         <!--<repository>-->
             <!--<id>nexus-hercules</id>-->
-            <!--<name>Nexus public Repository</name>-->
-            <!--<url>http://10.0.20.127:8081/nexus/content/groups/public/</url>-->
+            <!--<name>releases</name>-->
+            <!--<url>http://10.0.20.127:8081/nexus/content/repositories/releases/</url>-->
         <!--</repository>-->
-        <repository>
+        <snapshotRepository>
             <id>nexus-hercules</id>
-            <name>Nexus public Repository</name>
-            <url>http://localhost:8081/nexus/content/groups/public/</url>
-        </repository>
-    </repositories>
+            <name>snapshots</name>
+            <url>http://10.0.20.127:8081/nexus/content/repositories/snapshots/</url>
+        </snapshotRepository>
+
+    </distributionManagement>
+
 
     <build>
         <plugins>

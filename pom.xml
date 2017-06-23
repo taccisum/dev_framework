@@ -22,7 +22,7 @@
     </modules>
 
     <properties>
-        <framework.version>1.0.1-SNAPSHOT</framework.version>
+        <framework.version>1.0.1.RELEASE</framework.version>
         <fm-client.version>${framework.version}</fm-client.version>
         <fm-core.version>${framework.version}</fm-core.version>
         <fm-dao.version>${framework.version}</fm-dao.version>

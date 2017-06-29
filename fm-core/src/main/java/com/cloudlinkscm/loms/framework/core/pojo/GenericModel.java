@@ -1,6 +1,8 @@
 package com.cloudlinkscm.loms.framework.core.pojo;
 
+import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.OrderBy;
 import java.io.Serializable;
 import java.util.Date;
 import com.cloudlinkscm.loms.framework.util.BeanUtils;
@@ -27,6 +29,7 @@ public abstract class GenericModel<PK> implements Serializable {
     @Id
     private PK id;
     private String insertUser;
+    @OrderBy("desc")
     private Date insertTime;
     private String updateUser;
     private Date updateTime;

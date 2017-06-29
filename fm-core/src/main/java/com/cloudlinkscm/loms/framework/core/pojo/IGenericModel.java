@@ -7,6 +7,7 @@ import javax.persistence.Column;
  * 定义通用的model应具有的getter和setter及其它通用方法
  *
  * <br/>
+ *
  * 继承此接口后的类应该：
  * <ul>
  *     <li>定义getter/setter相对应的字段，且字段名称必须与getter/setter一致</li>

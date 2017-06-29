@@ -2,6 +2,8 @@ package com.cloudlinkscm.loms.framework.core.pojo;
 
 import io.swagger.annotations.ApiModelProperty;
 
+import java.util.ArrayList;
+
 /**
  * 定义前端表格控件使用的响应格式
  *
@@ -28,5 +30,12 @@ public class DataTableResponse<T> {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    public static DataTableResponse empty(){
+        DataTableResponse o = new DataTableResponse();
+        o.setReturnTotalItems(0l);
+        o.setData(new ArrayList<>());
+        return o;
     }
 }

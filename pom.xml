@@ -22,7 +22,7 @@
     </modules>
 
     <properties>
-        <framework.version>1.0.1.RELEASE</framework.version>
+        <framework.version>1.0.2-SNAPSHOT</framework.version>
         <fm-client.version>${framework.version}</fm-client.version>
         <fm-core.version>${framework.version}</fm-core.version>
         <fm-dao.version>${framework.version}</fm-dao.version>
@@ -49,6 +49,7 @@
         <swagger-ui.version>2.6.1</swagger-ui.version>
         <swagger-annotations.version>1.5.10</swagger-annotations.version>
         <joda-time.version>2.9.9</joda-time.version>
+        <common-lang3.version>3.3.2</common-lang3.version>
     </properties>
 
 
@@ -146,6 +147,11 @@
                 <groupId>org.apache.poi</groupId>
                 <artifactId>poi-ooxml</artifactId>
                 <version>${poi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${common-lang3.version}</version>
             </dependency>
 
             <dependency>

@@ -1,6 +1,6 @@
 package com.cloudlinkscm.loms.framework.dao;
 
-import com.cloudlinkscm.loms.framework.core.pojo.GenericBizModel;
+import com.cloudlinkscm.loms.framework.core.pojo.IGenericBizModel;
 import tk.mybatis.mapper.entity.Example;
 
 /**
@@ -11,7 +11,7 @@ import tk.mybatis.mapper.entity.Example;
  * @author : tac
  * @date : 2017/6/20
  */
-public abstract class GenericBizDao<E extends GenericBizModel, PK> extends GenericDao<E, PK> {
+public abstract class GenericBizDao<E extends IGenericBizModel, PK> extends GenericDao<E, PK> {
     protected static final String TENANT_ID_FIELD_NAME = "tenantId";
 
     protected GenericMapper<E> mapper;

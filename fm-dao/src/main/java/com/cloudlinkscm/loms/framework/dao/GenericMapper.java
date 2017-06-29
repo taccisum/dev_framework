@@ -1,6 +1,6 @@
 package com.cloudlinkscm.loms.framework.dao;
 
-import com.cloudlinkscm.loms.framework.core.pojo.GenericModel;
+import com.cloudlinkscm.loms.framework.core.pojo.IGenericModel;
 import tk.mybatis.mapper.common.Mapper;
 
 /**
@@ -26,5 +26,5 @@ import tk.mybatis.mapper.common.Mapper;
  * @date : 2017/5/13
  */
 
-public interface GenericMapper<E extends GenericModel> extends Mapper<E> {
+public interface GenericMapper<E extends IGenericModel> extends Mapper<E> {
 }

@@ -1,7 +1,7 @@
 package com.cloudlinkscm.loms.framework.dao;
 
 import com.cloudlinkscm.loms.framework.core.exception.BizException;
-import com.cloudlinkscm.loms.framework.core.pojo.GenericModel;
+import com.cloudlinkscm.loms.framework.core.pojo.IGenericModel;
 import com.cloudlinkscm.loms.framework.core.pojo.Language;
 import com.cloudlinkscm.loms.framework.dao.exception.DeleteException;
 import com.cloudlinkscm.loms.framework.dao.exception.InsertException;
@@ -21,16 +21,15 @@ import java.util.List;
  * <p>在派生类中需要通过构造函数指定从{@link GenericMapper}派生的一个具体的mapper</p>
  *
  * <p>
- *    在某些方法的封装实现中（如{@link #insert(GenericModel)}），会依赖于一些业务数据，
+ *    在某些方法的封装实现中（如{@link #insert(IGenericModel)}），会依赖于一些业务数据，
  *    为了将框架与实际业务解耦，这些业务数据的获取是通过在具体应用中实现的{@link BizDataInterface}
  *    的bean来获取的
  * </p>
  *
- * todo:: test select by boundary
  * @author : tac
  * @date : 2017/5/16
  */
-public abstract class GenericDao<E extends GenericModel, PK> {
+public abstract class GenericDao<E extends IGenericModel, PK> {
     private static final boolean BOUNDARY_DEFAULT = true;
 
     protected Logger logger = LoggerFactory.getLogger(this.getClass());

@@ -1,6 +1,6 @@
 package com.cloudlinkscm.loms.framework.core.pojo;
 
-import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OrderBy;
 import java.io.Serializable;
@@ -21,11 +21,13 @@ import com.cloudlinkscm.loms.framework.util.BeanUtils;
  *     </ul>
  * </p>
  *
+ * @see IGenericModel
  * @author : tac
  * @date : 2017/5/13
  */
 
-public abstract class GenericModel<PK> implements Serializable {
+@Entity
+public abstract class GenericModel<PK> implements IGenericModel<PK>, Serializable {
     @Id
     private PK id;
     private String insertUser;
@@ -34,56 +36,69 @@ public abstract class GenericModel<PK> implements Serializable {
     private String updateUser;
     private Date updateTime;
 
+    @Override
     public PK getId() {
         return id;
     }
 
+    @Override
     public void setId(PK id) {
         this.id = id;
     }
 
+    @Override
     public String getInsertUser() {
         return insertUser;
     }
 
+    @Override
     public void setInsertUser(String insertUser) {
         this.insertUser = insertUser;
     }
 
+    @Override
     public Date getInsertTime() {
         return insertTime;
     }
 
+    @Override
     public void setInsertTime(Date insertTime) {
         this.insertTime = insertTime;
     }
 
+    @Override
     public String getUpdateUser() {
         return updateUser;
     }
 
+    @Override
     public void setUpdateUser(String updateUser) {
         this.updateUser = updateUser;
     }
 
+    @Override
     public Date getUpdateTime() {
         return updateTime;
     }
 
+    @Override
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
 
     /**
-     * 用于初始化一个新的实体某些字段的默认值
+     * {@inheritDoc}
+     *
      * @see #generateId()
      * @see #setDefault()
      */
+    @Override
     public final void init(){
         Date currentDate = new Date();
 
         setId(generateId());
         setInsertTime(currentDate);
+        //todo:: 后续若把BizDataInterface迁移到fm-core模块中，则可以在此处直接给insertUser赋值
 //        setInsertUser("");
         setUpdateUser(null);
         setUpdateTime(null);

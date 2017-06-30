@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiParam;
  * 定义前端分页数据请求通用数据格式
  *
  * 由于字段命名已定义而且带有混淆意味，因此对字段做了适配
- * 在开发过程中尽量使用offset和limit代替itemFrom和itemTo
+ * 在开发过程中尽量使用 (offset和limit) 或 (pageIndex和pageSize) 代替itemFrom和itemTo
  *
  * @author : tac
  * @date : 2017/5/26

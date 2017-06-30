@@ -15,9 +15,9 @@ import io.swagger.annotations.ApiParam;
 public abstract class PaginationRequest {
     private static final int DEF_OFFSET = 0;
     private static final int DEF_LIMIT = 20;
-    @ApiParam(value = "&lt;={分页区间开始坐标}", defaultValue = "0")
+    @ApiParam(value = "&rt;={分页区间开始坐标}", defaultValue = "0")
     private Integer itemFrom;
-    @ApiParam(value = "&gt;{分页区间结束坐标}", defaultValue = "20")
+    @ApiParam(value = "&lt;{分页区间结束坐标}", defaultValue = "20")
     private Integer itemTo;
 
     /**

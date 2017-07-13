@@ -23,6 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 /**
  * todo:: test
+ * todo:: perform 对get请求的处理有点问题（无法直接处理参数）
  * spring环境下通用的junit controller层单元测试基类
  *
  * @author : tac

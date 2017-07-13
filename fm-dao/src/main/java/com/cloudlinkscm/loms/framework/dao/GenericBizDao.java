@@ -35,6 +35,7 @@ public abstract class GenericBizDao<E extends IGenericBizModel, PK> extends Gene
         criteria.setTenantId(currentUserTenantId());
     }
 
+    @Override
     protected void setBoundary(Example example) {
 //      以租户为边界过滤
         Example.Criteria criteria ;

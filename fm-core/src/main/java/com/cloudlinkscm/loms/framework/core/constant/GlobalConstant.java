@@ -6,5 +6,6 @@ package com.cloudlinkscm.loms.framework.core.constant;
  */
 
 public interface GlobalConstant {
+    String DATE_FORMAT_PATTERN = "yyyy-MM-dd";
     String DATE_TIME_FORMAT_PATTERN = "yyyy-MM-dd HH:mm:ss";
 }

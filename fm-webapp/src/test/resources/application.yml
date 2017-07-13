@@ -7,7 +7,7 @@ spring:
   datasource:
       type: com.zaxxer.hikari.HikariDataSource
       driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://10.0.20.127:3306/fm_test
+      url: jdbc:mysql://10.0.20.88:3306/fm_test
       username: root
       password: root
       hikari:

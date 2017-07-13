@@ -9,7 +9,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -37,14 +37,15 @@ import java.util.List;
  */
 @Configuration
 @EnableSwagger2
-public class WebConfiguration extends WebMvcConfigurationSupport {
+public class WebConfiguration extends WebMvcConfigurerAdapter {
 
     @Resource
     private HerculesConfig herculesConfig;
 
     @Override
-    public HandlerExceptionResolver handlerExceptionResolver() {
-        return new ExceptionHandler();
+    public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
+        super.extendHandlerExceptionResolvers(exceptionResolvers);
+        exceptionResolvers.add(new ExceptionHandler());
     }
 
     @Bean
@@ -73,26 +74,24 @@ public class WebConfiguration extends WebMvcConfigurationSupport {
     }
 
     /**
-     * 注册swagger的资源文件
+     * 注册静态资源文件
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        //swagger
         registry.addResourceHandler("swagger-ui.html")
                 .addResourceLocations("classpath:/META-INF/resources/");
-        registry.addResourceHandler("/webjars/**")
-                .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
     /**
      * 配置消息转换器
      */
     @Override
-    protected void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         super.configureMessageConverters(converters);
         ObjectMapper myMapper = new ObjectMapper();
         myMapper.setDateFormat(new SimpleDateFormat(herculesConfig.getDateFormatPattern()));    //日期格式化器
 //        myMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd hh:mm:ss"));    //日期格式化器
         converters.add(new MappingJackson2HttpMessageConverter(myMapper));
     }
-
 }

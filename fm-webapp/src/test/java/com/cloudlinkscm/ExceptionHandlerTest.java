@@ -1,6 +1,5 @@
 package com.cloudlinkscm;
 
-import com.cloudlinkscm.loms.framework.webapp.response.processer.adapter.ResponseAdapterFactory;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 
@@ -36,6 +35,19 @@ public class ExceptionHandlerTest extends BaseTest {
     @Test
     public void testBizException() throws Exception {
         String responseStr =  mvc.perform(post("/demo/biz_exception")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("")
+                .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andReturn()
+                .getResponse()
+                .getContentAsString();
+    }
+
+    @Test
+    public void testBizExceptionWithArguments() throws Exception {
+        String responseStr =  mvc.perform(post("/demo/biz_exception_with_arguments")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("")
                 .accept(MediaType.parseMediaType("application/json;charset=UTF-8")))

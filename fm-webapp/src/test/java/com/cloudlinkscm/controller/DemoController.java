@@ -1,6 +1,7 @@
 package com.cloudlinkscm.controller;
 
 import com.cloudlinkscm.loms.framework.core.exception.BizException;
+import com.cloudlinkscm.loms.framework.core.exception.BizExceptionWithArguments;
 import com.cloudlinkscm.loms.framework.core.pojo.ErrorCode;
 import com.cloudlinkscm.loms.framework.core.pojo.Language;
 import com.cloudlinkscm.loms.framework.core.pojo.RestfulApiResponse;
@@ -53,6 +54,31 @@ public class DemoController {
                 return "2333";
             }
         });
+    }
+
+    @RequestMapping("/biz_exception_with_arguments")
+    public RestfulApiResponse bizExceptionWithArguments(){
+        throw new BizExceptionWithArguments(new ErrorCode() {
+            @Override
+            public String getInternationalMessage(Language language, Object... args) {
+                return String.format("it's a business exception, args: %s, %s, %s" , args);
+            }
+
+            @Override
+            public String getMessage() {
+                return "这是一个业务异常";
+            }
+
+            @Override
+            public String getInternationalMessage(Language language) {
+                return "it's a business exception";
+            }
+
+            @Override
+            public String getCode() {
+                return "2333";
+            }
+        }, "aa", "bb", "cc");
     }
 
     @RequestMapping("/date_formatter")

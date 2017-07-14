@@ -30,7 +30,7 @@ public class ErrorMessage {
         }
     }
 
-    public String getInternationalErrorMessage(ErrorCode key, Language language, Object args){
+    public String getInternationalErrorMessage(ErrorCode key, Language language, Object... args){
         String msg = getInternationalErrorMessage(key, language);
         return String.format(msg, args);
     }

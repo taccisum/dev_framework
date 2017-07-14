@@ -16,6 +16,14 @@ public class DataTableResponse<T> {
     @ApiModelProperty(value = "分页后的数据")
     private T data;
 
+    /**
+     * 对应{@link #getReturnTotalItems()}的冗余字段
+     * @return
+     */
+    public Long getReturnTotalItem(){
+        return returnTotalItems;
+    }
+
     public Long getReturnTotalItems() {
         return returnTotalItems;
     }

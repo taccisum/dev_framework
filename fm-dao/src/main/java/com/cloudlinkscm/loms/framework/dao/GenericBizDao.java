@@ -51,7 +51,7 @@ public abstract class GenericBizDao<E extends IGenericBizModel, PK> extends Gene
 
     }
 
-    private void setBoundaryCriteria(Example.Criteria criteria) {
+    protected void setBoundaryCriteria(Example.Criteria criteria) {
         criteria.andEqualTo(TENANT_ID_FIELD_NAME, currentUserTenantId());
     }
 }

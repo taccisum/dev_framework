@@ -6,6 +6,12 @@ package com.cloudlinkscm.loms.framework.core.pojo;
  * @author : tac
  * @date : 2017/6/15
  */
+
+
+/**
+ * @deprecated 请使用单向装配器
+ * @see SingleAssembler
+ */
 public interface Assembler<DTO, BO> {
     DTO toDto(BO bo);
     BO toBo(DTO dto);

@@ -13,15 +13,17 @@ import java.util.HashMap;
  * @date : 2017/5/18
  */
 public enum GenericErrorCode implements ErrorCode {
-    INVALID_REQUEST_ARGUMENT_EXCEPTION("101");
+    INVALID_ARGUMENT_EXCEPTION("101"),
+
+    ;
 
     private static HashMap<ErrorCode, String> zh = new HashMap<>();
     private static HashMap<ErrorCode, String> en = new HashMap<>();
     static {
-        zh.put(GenericErrorCode.INVALID_REQUEST_ARGUMENT_EXCEPTION, "无效请求参数：%s");
+        zh.put(GenericErrorCode.INVALID_ARGUMENT_EXCEPTION, "无效参数：%s");
     }
     static {
-        en.put(GenericErrorCode.INVALID_REQUEST_ARGUMENT_EXCEPTION, "invalid request argument: %s");
+        en.put(GenericErrorCode.INVALID_ARGUMENT_EXCEPTION, "invalid argument: %s");
     }
     private static ErrorMessage errorMessage = new ErrorMessage(zh, en);
 

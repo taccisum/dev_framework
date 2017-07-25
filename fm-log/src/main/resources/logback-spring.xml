@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration>
+<configuration debug="true">
     <include resource="org/springframework/boot/logging/logback/defaults.xml" />
     <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
 
-    <springProperty scope="local" name="LOGSTASH_HOST" source="logging.logstash.host" defaultValue="localhost" />
-    <springProperty scope="local" name="LOGSTASH_PORT" source="logging.logstash.port" defaultValue="4550"/>
+    <springProperty scope="local" name="LOGSTASH_HOST" source="logging.logstash.host" defaultValue="10.0.20.207" />
+    <springProperty scope="local" name="LOGSTASH_PORT" source="logging.logstash.port" defaultValue="8801"/>
 
     <logger name="org.springframework.web" level="INFO" />
     <logger name="org.springboot.sample" level="TRACE" />

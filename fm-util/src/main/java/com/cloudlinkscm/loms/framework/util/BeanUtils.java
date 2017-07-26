@@ -1,11 +1,14 @@
 package com.cloudlinkscm.loms.framework.util;
 
 import com.cloudlinkscm.loms.framework.util.exception.BeanUtilsException;
+import org.apache.commons.beanutils.PropertyUtilsBean;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 
+import java.beans.PropertyDescriptor;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -40,6 +43,28 @@ public abstract class BeanUtils {
             logger.error("BeanUtils.plpulate() exception", e);
             throw new BeanUtilsException(e);
         }
+    }
+
+    /**
+     * 将bean的字段抽取出来作为一个map，暂不支持嵌套对象的抽取（嵌套对象的字段会被忽略）
+     */
+    public static Map<String, Object> extract(Object bean){
+        Map<String, Object> params = new HashMap<>(0);
+        try {
+            PropertyUtilsBean propertyUtilsBean = new PropertyUtilsBean();
+            PropertyDescriptor[] descriptors = propertyUtilsBean.getPropertyDescriptors(bean);
+            for (int i = 0; i < descriptors.length; i++) {
+                String name = descriptors[i].getName();
+                if (!"class".equals(name)) {
+                    params.put(name, propertyUtilsBean.getNestedProperty(bean, name));
+                }else{
+                    //todo:: 抽取嵌套对象属性
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return params;
     }
 
     private static String[] getNullPropertyNames (Object source) {

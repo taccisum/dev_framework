@@ -26,7 +26,7 @@ import java.util.List;
  * web app通用配置
  *
  * <ul>
- *     <li>配置全局的异常处理器{@link #handlerExceptionResolver()}</li>
+ *     <li>配置全局的异常处理器{@link #extendHandlerExceptionResolvers(List)}</li>
  *     <li>配置响应适配器的handler到spring mvc的handlers list并调整优先级{@link #restfulApiResponseSupportFactoryBean()}</li>
  *     <li>集成swagger并配置{@link #createRestApi()} {@link #addResourceHandlers(ResourceHandlerRegistry)}</li>
  *     <li>配置消息转换器{@link #configureMessageConverters(List)}</li>
